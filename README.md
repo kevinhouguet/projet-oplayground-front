@@ -6,6 +6,11 @@
 
 ## Technos
 
-...
+- NodeJS
+- React
+- Vite
+- TailwindCSS
+- DaisyUI
+- ESLint
 
 ## Routes
