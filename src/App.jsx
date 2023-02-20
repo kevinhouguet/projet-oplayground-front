@@ -20,7 +20,7 @@ function App() {
 				<button onClick={() => setCount((count) => count + 1)}>
           count is {count}
 				</button>
-				<button className="btn btn-primary">Test daisyUI</button>
+				<button className="btn btn-primary">Gael daisyUI</button>
 			</div>
 		</div>
 	);
