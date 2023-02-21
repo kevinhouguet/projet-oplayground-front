@@ -6,7 +6,7 @@ import "./App.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Main from "./components/Main";
-function App() {
+const App = () => {
 
 	return (
 		<div className="flex flex-col min-h-screen">
@@ -15,6 +15,6 @@ function App() {
 			<Footer />
 		</div>
 	);
-}
+};
 
 export default App;
