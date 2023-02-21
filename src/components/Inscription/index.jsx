@@ -50,7 +50,7 @@ const Inscription = () => {
 				</div>
 			</form>
 			<div className="flex justify-center">
-				<button className="btn btn-secondary my-7 " type="button"> Inscription </button>
+				<button className="btn btn-primary my-7 " type="button"> Inscription </button>
 			</div>
 
 		</div>
