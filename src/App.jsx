@@ -1,27 +1,18 @@
 import React from "react";
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
+// import { useState } from "react";
 import "./App.css";
 
+//import composant
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Main from "./components/Main";
 function App() {
-	const [count, setCount] = useState(0);
 
 	return (
-		<div className="App">
-			<div className="flex">
-				<a className="flex-auto" href="https://vitejs.dev" target="_blank" rel="noreferrer">
-					<img src="/vite.svg" className="logo" alt="Vite logo" />
-				</a>
-				<a href="https://reactjs.org" target="_blank" rel="noreferrer">
-					<img src={reactLogo} className="logo react" alt="React logo" />
-				</a>
-			</div>
-			<div className="card">
-				<button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-				</button>
-				<button className="btn btn-primary">Test daisyUI</button>
-			</div>
+		<div className="flex flex-col min-h-screen">
+			<Header />
+			<Main />
+			<Footer />
 		</div>
 	);
 }
