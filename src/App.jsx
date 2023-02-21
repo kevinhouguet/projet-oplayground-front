@@ -5,6 +5,7 @@ import "./App.css";
 //import composant
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+
 import HomePage from "./components/HomePage";
 
 const App = () => (
