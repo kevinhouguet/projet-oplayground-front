@@ -5,13 +5,13 @@ import "./App.css";
 //import composant
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import Main from "./components/Main";
+import Inscription from "./components/Inscription";
 function App() {
 
 	return (
 		<div className="flex flex-col min-h-screen">
 			<Header />
-			<Main />
+			<Inscription />
 			<Footer />
 		</div>
 	);
