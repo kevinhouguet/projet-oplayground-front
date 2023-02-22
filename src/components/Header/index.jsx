@@ -1,6 +1,5 @@
 import React from "react";
 import logoOP from "../../assets/logoOP.png";
-import "./styles.css";
 
 const Header = () => (
 	<header className="navbar bg-primary text-primary-content p-5">

@@ -11,7 +11,7 @@ const Footer = () => (
 		
 		<div>
 			<span className="footer-title text-2xl">Nos réseaux</span>
-			<div className="flex space-x-4 justify-center">
+			<div className="flex space-x-4 m-auto">
 				<a className="link link-hover"> <FaFacebook /> </a>
 				<a className="link link-hover"> <FaTwitter /> </a>
 				<a className="link link-hover"> <FaGithub /> </a>
