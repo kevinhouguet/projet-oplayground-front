@@ -1,54 +1,54 @@
 import React from "react";
+import { useState } from "react";
+import {AiFillEyeInvisible, AiFillEye} from "react-icons/ai";
 
 const Inscription = () => {
 
-	// const passwordToggle = document.querySelector(".js-password-toggle");
+	const [open, setOpen] = useState(false);
+	// handle toggle
+	const toggle = () => {
+		setOpen(!open);
+	};
 
-	// passwordToggle.addEventListener("change", function() {
-	// 	const password = document.querySelector(".js-password"),
-	// 		passwordLabel = document.querySelector(".js-password-label");
-
-	// 	if (password.type === "password") {
-	// 		password.type = "text";
-	// 		passwordLabel.innerHTML = "hide";
-	// 	} else {
-	// 		password.type = "password";
-	// 		passwordLabel.innerHTML = "show";
-	// 	}
-
-	// 	password.focus();
-	// });
+	const [openbis, setOpenbis] = useState(false);
+	// handle toggle
+	const togglebis = () => {
+		setOpenbis(!openbis);
+	};
 
 	return(
-		<div className="m-auto">
+
+		<div className="m-auto relative">
 
 			<h1 className="flex justify-center p-6 text-2xl">Inscription</h1>
 			
-			<form className="flex flex-col gap-1 form-control w-full max-w-xs">
+			<form className="flex flex-col gap-1 form-control w-full max-w-xs relative">
 				<label className="label-text-xl"> Adresse mail* : </label>
-				<input className="input input-warning w-full max-w-xs" id="adressemail" type="text"/>
+				<input className="input input-warning w-full max-w-xs" type="text"/>
 
 				<label className="label-text-xl"> Username* : </label>
-				<input className="input input-warning w-full max-w-xs" id="username" type="text"/>
+				<input className="input input-warning w-full max-w-xs" type="text"/>
 
-				<label className="label-text-xl" htmlFor="password"> Mot de passe* </label>
-				<div className="relative w-full">
-					<div className="absolute inset-y-0 right-0 flex items-center px-2">
-						<input className="hidden js-password-toggle" id="toggle" type="checkbox" />
-						{/* <label className="bg-gray-300 hover:bg-gray-400 rounded px-2 py-1 text-sm text-gray-600 font-mono cursor-pointer js-password-label" htmlFor="toggle">show</label> */}
-					</div>
-					<input className="input input-warning w-full max-w-xs js-password" id="password" type="password"/>
+				<label className="label-text-xl"> Mot de passe* </label>
+				<input className="input input-warning w-full max-w-xs" type={(openbis === false)? "password" : "text" }/>
+
+				<label className="label-text-xl"> Confirmation mot de passe* </label>
+				<input className="input input-warning w-full max-w-xs" type={(open === false)? "password" : "text" }/>
+
+				<div className="text-2xl absolute bottom-3 right-3">
+					{
+						(open === false)? <AiFillEyeInvisible onClick={toggle}/>:<AiFillEye onClick={toggle}/>
+					}
 				</div>
 
-				<label className="label-text-xl" htmlFor="password"> Confirmation mot de passe* </label>
-				<div className="relative w-full">
-					<div className="absolute inset-y-0 right-0 flex items-center px-2">
-						<input className="hidden js-password-toggle" id="toggle" type="checkbox" />
-						{/* <label className="bg-gray-300 hover:bg-gray-400 rounded px-2 py-1 text-sm text-gray-600 font-mono cursor-pointer js-password-label" htmlFor="toggle">show</label> */}
-					</div>
-					<input className="input input-warning w-full max-w-xs js-password" id="password" type="password"/>
+				<div className="text-2xl absolute bottom-[90px] right-3">
+					{
+						(openbis === false)? <AiFillEyeInvisible onClick={togglebis}/>:<AiFillEye onClick={togglebis}/>
+					}
 				</div>
+
 			</form>
+
 			<div className="flex justify-center">
 				<button className="btn btn-primary my-7 " type="button"> Inscription </button>
 			</div>
