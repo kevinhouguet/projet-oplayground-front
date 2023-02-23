@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
@@ -8,8 +9,17 @@ const Inscription = () => {
 	const { handleSubmit, register, watch, formState : { errors } } = useForm();
 
 	const pwd = watch("password");
+
 	function onSubmit(data) {
 		console.log(data);
+
+		axios.post("https://oplaygroundapi.herokuapp.com/api/users", data)
+			.then((response) => {
+				console.log(response.data);
+			})
+			.catch((error) => {
+				console.error(error);
+			});
 	}
 
 	const [open, setOpen] = useState(false);
