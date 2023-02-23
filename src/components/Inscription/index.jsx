@@ -1,11 +1,11 @@
 import React from "react";
-import {useForm} from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useState } from "react";
-import {AiFillEyeInvisible, AiFillEye} from "react-icons/ai";
+import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 
 const Inscription = () => {
 
-	const {handleSubmit, register, watch, formState : {errors}} = useForm();
+	const { handleSubmit, register, watch, formState : { errors } } = useForm();
 
 	const pwd = watch("password");
 	function onSubmit(data) {
@@ -24,7 +24,7 @@ const Inscription = () => {
 		setOpenbis(!openbis);
 	};
 
-	return(
+	return (
 
 		<div className="m-auto">
 
@@ -33,20 +33,20 @@ const Inscription = () => {
 			<form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-1 form-control w-full max-w-xs relative">
 			
 				<label className="label-text-xl"> Adresse mail* : </label>
-				<input className="input input-warning w-full max-w-xs" type="text" {...register("email", {required : true})} />
+				<input className="input input-warning w-full max-w-xs" type="email" {...register("email", {required : true})} />
 				{errors.email && <p className="text-red-600 text-sm"> Adresse mail non renseignée </p>}
 
 				<label className="label-text-xl"> Username* : </label>
 				<input className="input input-warning w-full max-w-xs" type="text" {...register("username", {required : true})} />
 				{errors.username && <p className="text-red-600 text-sm"> Username non renseigné </p>}
 
-				<label className="label-text-xl"> Mot de passe* </label>
+				<label className="label-text-xl"> Mot de passe* : </label>
 				<input className="input input-warning w-full max-w-xs" type={(open === false)? "password" : "text"} 
 					{...register("password", {required : true, minLength : 8})}  />
 				{errors.password && <p className="text-red-600 text-sm"> Mot de passe obligatoire et doit être supérieur 8 caractères</p>}
 
 
-				<label className="label-text-xl"> Confirmation mot de passe* </label>
+				<label className="label-text-xl"> Confirmation mot de passe* : </label>
 				<input className="input input-warning w-full max-w-xs" type={(openbis === false)? "password" : "text"}
 					{...register("passwordconfirm", {required : true, validate : value => value === pwd})} />
 				{errors.passwordconfirm && <p className="text-red-600 text-sm"> Le mot de passe est différent et doit être supérieur 8 caractères </p>}
