@@ -1,44 +1,26 @@
-import axios from "axios";
+import { bool, string, func, number, shape } from "prop-types";
 import { useForm } from "react-hook-form";
-import React, { useState } from "react";
+import React from "react";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
-
-const Inscription = () => {
+const Inscription = (props) => {
 	
-	const [idUser, setIdUser] = useState("");
-	const [username, setUsername] = useState("");
-	const [state, setState] = useState({ checked: false });
-	const [open, setOpen] = useState(false);
-	const [openbis, setOpenbis] = useState(false);
-
+	const { 
+		onSubmit,
+		open,
+		openbis,
+		toggle,
+		togglebis,
+		idUser,
+		checked,
+		onChange,
+		username
+	} = props;
+	
 	const { handleSubmit, register, watch, formState : { errors } } = useForm();
 	
-	const handleChange = (event) => {
-		setState({ checked: event.target.checked });
-	};
-
 	const pwd = watch("password");
-
-	const toggle = () => {
-		setOpen(!open);
-	};
-
-	const togglebis = () => {
-		setOpenbis(!openbis);
-	};
-
-	const onSubmit = (data) => {
-		axios.post("https://oplaygroundapi.herokuapp.com/api/users", data)
-			.then((response) => {
-				setIdUser(response.data.id);
-				setUsername(response.data.username);
-			})
-			.catch((error) => {
-				console.error(error);
-			});
-	};
 
 	return (
 		<div className="m-auto">
@@ -71,13 +53,13 @@ const Inscription = () => {
 
 					<div className="text-2xl absolute bottom-[200px] right-3">
 						{
-							(open === false)? <AiFillEyeInvisible onClick={toggle}/>:<AiFillEye onClick={toggle}/>
+							(open === false )? <AiFillEyeInvisible onClick={toggle}/> : <AiFillEye onClick={toggle}/>
 						}
 					</div>
 
 					<div className="text-2xl absolute bottom-[120px] right-3">
 						{
-							(openbis === false)? <AiFillEyeInvisible onClick={togglebis}/>:<AiFillEye onClick={togglebis}/>
+							(openbis === false) ? <AiFillEyeInvisible onClick={togglebis}/> : <AiFillEye onClick={togglebis}/>
 						}
 					</div>
 
@@ -86,22 +68,39 @@ const Inscription = () => {
 					</div>
 				</div>
 			</form>
-			{idUser && <>
-				<input type="checkbox" id="my-modal-4" className="modal-toggle" checked={idUser && state ? true : false} onChange={handleChange} />
-				<label htmlFor="my-modal-4" className="modal cursor-pointer">
-					<label className="modal-box relative" htmlFor="">
-						<h3 className="text-lg font-bold">Bonjour {username}</h3>
-						<p className="py-4">Bien joué ton compte a été correctement créé</p>
-						<div className="modal-action"></div>
-						<Link to="/connexion">
-							<label htmlFor="my-modal-5" className="btn">Se connecter</label>
-						</Link>
+
+			{
+				idUser && <>
+					<input type="checkbox" id="my-modal-4" className="modal-toggle" checked={idUser && checked ? true : false} onChange={onChange} />
+					<label htmlFor="my-modal-4" className="modal cursor-pointer">
+						<label className="modal-box relative" htmlFor="">
+							<h3 className="text-lg font-bold">Bonjour {username}</h3>
+							<p className="py-4">Bien joué ton compte a été correctement créé</p>
+							<div className="modal-action"></div>
+							<Link to="/connexion">
+								<label htmlFor="my-modal-5" className="btn">Se connecter</label>
+							</Link>
+						</label>
 					</label>
-				</label>
-			</>
+				</>
 			}
+
 		</div>
 	);
 };
 
 export default Inscription;
+
+Inscription.propTypes = {
+	onSubmit: func.isRequired,
+	open: bool.isRequired,
+	openbis: bool.isRequired,
+	toggle: func.isRequired,
+	togglebis: func.isRequired,
+	idUser: number,
+	checked: shape({
+		checked : bool.isRequired,
+	}).isRequired,
+	onChange: func.isRequired,
+	username: string.isRequired,
+};
