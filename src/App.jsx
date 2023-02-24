@@ -12,7 +12,6 @@ import Team from "./components/Team";
 import Error from "./components/Error";
 
 const App = () => {
-
 	return (
 		<div className="flex flex-col min-h-screen">
 			<Header />
