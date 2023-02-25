@@ -11,6 +11,8 @@ import Login from "./components/Login";
 import Team from "./components/Team";
 import Error from "./components/Error";
 import axios from "axios";
+import Card from "./components/Card";
+import Details from "./components/Details";
 
 const App = () => {
 	const [idUser, setIdUser] = useState();
@@ -62,6 +64,9 @@ const App = () => {
 				} />
 				<Route path="/qui-sommes-nous" element={<Team />} />
 				<Route path="/connexion" element={<Login />} />
+				<Route path="/liste-des-terrains" element={<Card />} />
+				<Route path="/detail-terrain" element={<Details />} />
+
 				<Route path="*" element={<Error />} />
 			</Routes>
 			<Footer />
