@@ -24,19 +24,62 @@ const Details = () => (
 			<p className="text-2xl"> Equipement à disposition : Sanitaires</p>
 			<p className="text-2xl"> Horaires : 10:00 à 19:00 </p>
 
-			<h2 className="text-center text-2xl text-primary font-bold"> Clique sur un évenement pour joindre l'organisateur ! </h2>
-			<div className="flex flex-col h-80 overflow-y-scroll pt-10">
-				<label htmlFor="my-modal-3" className="btn">Le 18/05/2023 à 12h Match d'entrainement</label>
+			<h2 className="text-center text-2xl text-primary font-bold m-5"> Clique sur un évenement pour joindre l'organisateur ! </h2>
+			<div className="flex flex-col h-80 overflow-y-scroll gap-1 mb-6">
+				{/* Une modal pour réserver un terrain */}
+				<label htmlFor="my-modal-3" className="btn h-20 text-xl">Le 18/05/2023 à 12h - Match d'entrainement</label>
 				<input type="checkbox" id="my-modal-3" className="modal-toggle" />
 				<div className="modal">
 					<div className="modal-box relative">
 						<label htmlFor="my-modal-3" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-						<h3 className="text-lg font-bold">Congratulations random Internet user!</h3>
-						<p className="py-4">You've been selected for a chance to get one year of subscription to use Wikipedia for free!</p>
+						<h3 className="text-lg font-bold">Contact l'organisateur pour réserver ta place !</h3>
+						<p className="py-4 text-2xl">luna.martin@gmail.com</p>
 					</div>
 				</div>
+				{/* Une modal pour réserver un terrain */}
+				<label htmlFor="my-modal-3" className="btn h-20 text-xl">Le 18/05/2023 à 12h - Match d'entrainement</label>
+				<input type="checkbox" id="my-modal-3" className="modal-toggle" />
+				<div className="modal">
+					<div className="modal-box relative">
+						<label htmlFor="my-modal-3" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+						<h3 className="text-lg font-bold">Contact l'organisateur pour réserver ta place !</h3>
+						<p className="py-4 text-2xl">luna.martin@gmail.com</p>
+					</div>
+				</div>
+				{/* Une modal pour réserver un terrain */}
+				<label htmlFor="my-modal-3" className="btn h-20 text-xl">Le 18/05/2023 à 12h - Match d'entrainement</label>
+				<input type="checkbox" id="my-modal-3" className="modal-toggle" />
+				<div className="modal">
+					<div className="modal-box relative">
+						<label htmlFor="my-modal-3" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+						<h3 className="text-lg font-bold">Contact l'organisateur pour réserver ta place !</h3>
+						<p className="py-4 text-2xl">luna.martin@gmail.com</p>
+					</div>
+				</div>
+				{/* Une modal pour réserver un terrain */}
+				<label htmlFor="my-modal-3" className="btn h-20 text-xl">Le 18/05/2023 à 12h - Match d'entrainement</label>
+				<input type="checkbox" id="my-modal-3" className="modal-toggle" />
+				<div className="modal">
+					<div className="modal-box relative">
+						<label htmlFor="my-modal-3" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+						<h3 className="text-lg font-bold">Contact l'organisateur pour réserver ta place !</h3>
+						<p className="py-4 text-2xl">luna.martin@gmail.com</p>
+					</div>
+				</div>
+				{/* Une modal pour réserver un terrain */}
+				<label htmlFor="my-modal-3" className="btn h-20 text-xl">Le 18/05/2023 à 12h - Match d'entrainement</label>
+				<input type="checkbox" id="my-modal-3" className="modal-toggle" />
+				<div className="modal">
+					<div className="modal-box relative">
+						<label htmlFor="my-modal-3" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+						<h3 className="text-lg font-bold">Contact l'organisateur pour réserver ta place !</h3>
+						<p className="py-4 text-2xl">luna.martin@gmail.com</p>
+					</div>
+				</div>
+				{/* Une modal pour réserver un terrain */}
+
 			</div>
-			<button className="btn btn-warning">Créer un évenement</button>
+			<button className="btn btn-warning text-xl h-16">Créer un nouvel évenement</button>
 		</div>
 	</div>
 

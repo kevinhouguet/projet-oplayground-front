@@ -6,7 +6,17 @@ const Footer = () => (
 		<div>
 			<span className="footer-title text-3xl">O'playground</span>
 			<a href="/qui-sommes-nous" className="link link-hover">Qui sommes-nous ?</a>
-			<a className="link link-hover">Contact : admin@terrainsport.com</a>
+			<label htmlFor="my-modal" className="link link-hover">Contact</label>
+			<input type="checkbox" id="my-modal" className="modal-toggle" />
+			<div className="modal">
+				<div className="modal-box w-full">
+					<h3 className="font-bold text-4xl text-center">Contactez-nous !</h3>
+					<p className="py-4 text-2xl text-center ">Vous souhaitez ajouter un terrain, nous faire une suggestion ou tout autre demande ? Alors contactez-nous à l'adresse mail ci-après : <a href="mailto:contact@playground.com" className="text-blue-500 hover:text-blue-700">contact@playground.com</a> </p>
+					<div className="modal-action">
+						<label htmlFor="my-modal" className="btn">Ok</label>
+					</div>
+				</div>
+			</div>
 			<a className="link link-hover">Conditions générales</a>
 		</div>
 		

@@ -13,7 +13,9 @@ const Header = () => (
 				<p className="text-xl">Adresse : Avenue du canal</p>
 				<p className="text-xl">26600 PONT DE L'ISERE</p>
 				<div className="card-actions justify-end">
-					<button className="btn btn-primary py-2 px-4 text-lg">Plus d'information</button>
+					<a href="/detail-terrain">
+						<button className="btn btn-primary py-2 px-4 text-lg">Plus d'information</button> 
+					</a>
 				</div>
 			</div>
 		</div>
