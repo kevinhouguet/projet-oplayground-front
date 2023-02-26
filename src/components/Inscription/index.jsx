@@ -40,14 +40,14 @@ const Inscription = (props) => {
 				<label className="label-text-xl"> Mot de passe* : </label>
 				<input className="input input-warning w-full max-w-xs" type={(open === false)? "password" : "text"} 
 					{...register("password", {required : true, minLength : 8})}  />
-				{errors.password && <p className="text-red-600 text-sm"> Mot de passe obligatoire et doit être supérieur 8 caractères</p>}
+				{errors.password && <p className="text-red-600 text-sm"> Mot de passe obligatoire et doit être supérieur à 8 caractères</p>}
 
 
 				<label className="label-text-xl"> Confirmation mot de passe* : </label>
 				<div className="relative">
 					<input className="input input-warning w-full max-w-xs" type={(openbis === false)? "password" : "text"}
 						{...register("passwordconfirm", {required : true, validate : value => value === pwd})} />
-					{errors.passwordconfirm && <p className="text-red-600 text-sm"> Le mot de passe est différent et doit être supérieur 8 caractères </p>}
+					{errors.passwordconfirm && <p className="text-red-600 text-sm"> Le mot de passe est différent et doit être supérieur à 8 caractères </p>}
 				
 					<p className="text-sm">*Champs obligatoires</p>
 
