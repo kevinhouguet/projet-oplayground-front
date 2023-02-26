@@ -13,6 +13,7 @@ import Error from "./components/Error";
 import axios from "axios";
 import Card from "./components/Card";
 import Details from "./components/Details";
+import CGU from "./components/CGU";
 
 const App = () => {
 	const [idUser, setIdUser] = useState();
@@ -66,6 +67,7 @@ const App = () => {
 				<Route path="/connexion" element={<Login />} />
 				<Route path="/liste-des-terrains" element={<Card />} />
 				<Route path="/detail-terrain" element={<Details />} />
+				<Route path="/conditions-generales" element={<CGU />} />
 
 				<Route path="*" element={<Error />} />
 			</Routes>

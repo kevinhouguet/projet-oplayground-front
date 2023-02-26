@@ -17,7 +17,7 @@ const Footer = () => (
 					</div>
 				</div>
 			</div>
-			<a className="link link-hover">Conditions générales</a>
+			<a href="/conditions-generales" className="link link-hover">Conditions générales</a>
 		</div>
 		
 		<div>
