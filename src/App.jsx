@@ -12,6 +12,7 @@ import Team from "./components/Team";
 import Error from "./components/Error";
 import Card from "./components/Card";
 import Details from "./components/Details";
+import CGU from "./components/CGU";
 
 const App = () => {
 	const [checked, setChecked] = useState({ checked: false });
@@ -55,6 +56,7 @@ const App = () => {
 				} />
 				<Route path="/liste-des-terrains" element={<Card />} />
 				<Route path="/detail-terrain" element={<Details />} />
+				<Route path="/conditions-generales" element={<CGU />} />
 
 				<Route path="*" element={<Error />} />
 			</Routes>
