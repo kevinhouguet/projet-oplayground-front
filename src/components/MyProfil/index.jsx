@@ -16,7 +16,6 @@ const MyProfil = () => {
           <Link to="/mon-profil-edit">
             <button className="btn btn-sm btn-secondary my-2">Editer mon profil</button>
           </Link>
-
           <label htmlFor="my-modal-6" className="btn btn-sm btn-secondary">Supprimer mon profil</label>
           <input type="checkbox" id="my-modal-6" className="modal-toggle" />
           <div className="modal modal-bottom sm:modal-middle">
@@ -101,7 +100,6 @@ const MyProfil = () => {
               </div>
             </div>
           </div>
-
         </div>
       </form>
     </div>
