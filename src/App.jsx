@@ -8,6 +8,7 @@ import Footer from "./components/Footer";
 import HomePage from "./components/HomePage";
 import Inscription from "./components/Inscription";
 import Login from "./components/Login";
+import EditMyProfil from "./components/EditMyProfile";
 import Team from "./components/Team";
 import Error from "./components/Error";
 import Card from "./components/Card";
@@ -54,10 +55,10 @@ const App = () => {
 						open={open}
 					/>
 				} />
+        <Route path="/mon-profil-edit" element={<EditMyProfil />} />
 				<Route path="/liste-des-terrains" element={<Card />} />
 				<Route path="/detail-terrain" element={<Details />} />
 				<Route path="/conditions-generales" element={<CGU />} />
-
 				<Route path="*" element={<Error />} />
 			</Routes>
 			<Footer />

@@ -1,10 +1,11 @@
 /* eslint-disable react/no-unescaped-entities */
 import React from "react";
 import { FaTwitter, FaFacebook, FaGithub, FaInstagram  } from "react-icons/fa";
+
 const Footer = () => (
 	<footer className="footer bg-primary text-primary-content mt-auto p-5 flex justify-around">
 		<div>
-			<span className="footer-title text-3xl">O'playground</span>
+			<a href="/"><span className="footer-title text-3xl">O'playground</span></a>
 			<a href="/qui-sommes-nous" className="link link-hover">Qui sommes-nous ?</a>
 			<label htmlFor="my-modal" className="link link-hover">Contact</label>
 			<input type="checkbox" id="my-modal" className="modal-toggle" />
