@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 
-const MyProfil = () => {
+const EditMyProfil = () => {
 	const { register, handleSubmit, errors } = useForm();
 	const onSubmit = data => console.log(data);
 
@@ -14,11 +14,11 @@ const MyProfil = () => {
 			<div className="titleArea bg-yellow-300 py-1 px-4 mx-4">Mon Profil</div>
 			<form onSubmit={handleSubmit(onSubmit)} className="mt-8">
 				<div className="bodyFormArea">
-					<div className="firstAreaSection bg-base-200 mx-4 my-2 flex-initial">
+					<div className="firstAreaSection bg-base-200 mx-4 my-2 flex justify-around">
 						<div className="textInuputArea">
 							<div className="fistNameSection pb-1 pt-1 flex">
 								<p className="flex-1 px-4 mt-1">Prénom:</p>
-								<input className="input input-warning w-2/5 max-w-xs" type="text" placeholder="Jean" {...register("firstName", { maxLength: 80 })} />
+								<input className="input input-warning w-2/5 max-w-xs " type="text" placeholder="Jean" {...register("firstName", { maxLength: 80 })} />
 							</div>
 							<div className="lastNameSection pb-1 flex">
 								<p className="flex-1 px-4">Nom :</p>
@@ -41,10 +41,10 @@ const MyProfil = () => {
 								<input className="input input-warning w-2/5 max-w-xs" type="text" placeholder="Votre ville " {...register("Location", { minLength: 8 })} />
 							</div>
 						</div>
-						{/* <div className="imageInputArea">
+						<div className="imageInputArea">
 							<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBbjlEHBqqh5beLO_wisopY5OqX1j1AcXc6O7Hfmf_T1ndC_vo7uqMXGopWenZ3hCm9vM&usqp=CAU" alt="avatar" />
 							<input type="file" name="avatar" {...register("Avatar")} />
-						</div> */}
+						</div>
 					</div>
 					<div className="titleArea bg-yellow-300 py-1 px-4 mx-4 my-2">Mes informations personnelles</div>
 					<div className="secondAreaSection bg-base-200 pb2-0 mx-4">
@@ -80,4 +80,4 @@ const MyProfil = () => {
 	);
 }
 
-export default MyProfil;
+export default EditMyProfil;

@@ -8,7 +8,7 @@ import Footer from "./components/Footer";
 import HomePage from "./components/HomePage";
 import Inscription from "./components/Inscription";
 import Login from "./components/Login";
-import MyProfil from "./components/MyProfile";
+import EditMyProfil from "./components/EditMyProfile";
 import Team from "./components/Team";
 import Error from "./components/Error";
 import axios from "axios";
@@ -63,7 +63,8 @@ const App = () => {
 				} />
 				<Route path="/qui-sommes-nous" element={<Team />} />
 				<Route path="/connexion" element={<Login />} />
-				<Route path="/mon-profil" element={<MyProfil />} />
+				<Route path="/mon-profil-edit" element={<EditMyProfil />} />
+
 				<Route path="*" element={<Error />} />
 			</Routes>
 			<Footer />
