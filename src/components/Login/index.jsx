@@ -1,19 +1,31 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import { bool, func } from "prop-types";
+import axios from "axios";
 
-const Login = () => {
-	const {handleSubmit, register, formState : {errors}} = useForm();
+const Login = (props) => {
+	const [dataIdUser, setIdUser] = useState();
+	const [username, setUsername] = useState();
 
-	function onSubmit(data) {
-		console.log(data);
-	}
+	const { 
+		handleSubmit, 
+		register, 
+		formState : {errors},
+	} = useForm();
 
-	const [open, setOpen] = useState(false);
-	// handle toggle
-	const toggle = () => {
-		setOpen(!open);
+	const onSubmit = (data) => {
+		axios.post("https://oplaygroundapi.herokuapp.com/api/users/signin", data)
+			.then((response) => {
+				setIdUser(response.data.id);
+				setUsername(response.data.username);
+			})
+			.catch((error) => {
+				console.error(error);
+			});
 	};
+
+	const { open, toggle } = props;
 
 	return (
 		<div className="m-auto">
@@ -37,13 +49,29 @@ const Login = () => {
 					}
 				</div>
 
+				<p className="text-sm">*Champs obligatoires</p>
+
 				<div className="flex justify-center">
 					<button className="btn btn-primary my-7 " type="submit"> Connexion </button>
 				</div>
 
 			</form>
+
+			{
+				dataIdUser
+					?
+					<p> Bonjour {username}. Connexion réussi ! </p>
+					:
+					<p className="text-red-600 text-sm"> Connexion échouée ! Adresse mail et/ou mot de passe incorrect ! </p>
+			}
+
 		</div>
 	);
 };
 
 export default Login;
+
+Login.propTypes = {
+	open: bool.isRequired,
+	toggle: func.isRequired,
+};

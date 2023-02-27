@@ -1,24 +1,40 @@
-import { bool, string, func, number, shape } from "prop-types";
+import { bool, func, shape } from "prop-types";
 import { useForm } from "react-hook-form";
-import React from "react";
+import React, { useState } from "react";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const Inscription = (props) => {
+	const [idUser, setIdUser] = useState();
+	const [username, setUsername] = useState("");
 	
 	const { 
-		onSubmit,
 		open,
 		openbis,
 		toggle,
 		togglebis,
-		idUser,
 		checked,
 		onChange,
-		username
 	} = props;
 	
-	const { handleSubmit, register, watch, formState : { errors } } = useForm();
+	const { 
+		handleSubmit,
+		register,
+		watch, 
+		formState : { errors },
+	} = useForm();
+
+	const onSubmit = (data) => {
+		axios.post("https://oplaygroundapi.herokuapp.com/api/users", data)
+			.then((response) => {
+				setIdUser(Number(response.data.id));
+				setUsername(response.data.username);
+			})
+			.catch((error) => {
+				console.error(error);
+			});
+	};
 	
 	const pwd = watch("password");
 
@@ -40,26 +56,26 @@ const Inscription = (props) => {
 				<label className="label-text-xl"> Mot de passe* : </label>
 				<input className="input input-warning w-full max-w-xs" type={(open === false)? "password" : "text"} 
 					{...register("password", {required : true, minLength : 8})}  />
-				{errors.password && <p className="text-red-600 text-sm"> Mot de passe obligatoire et doit être supérieur 8 caractères</p>}
+				{errors.password && <p className="text-red-600 text-sm"> Mot de passe obligatoire et doit être supérieur à 8 caractères</p>}
 
 
 				<label className="label-text-xl"> Confirmation mot de passe* : </label>
 				<div className="relative">
 					<input className="input input-warning w-full max-w-xs" type={(openbis === false)? "password" : "text"}
 						{...register("passwordconfirm", {required : true, validate : value => value === pwd})} />
-					{errors.passwordconfirm && <p className="text-red-600 text-sm"> Le mot de passe est différent et doit être supérieur 8 caractères </p>}
+					{errors.passwordconfirm && <p className="text-red-600 text-sm"> Le mot de passe est différent et doit être supérieur à 8 caractères </p>}
 				
 					<p className="text-sm">*Champs obligatoires</p>
 
 					<div className="text-2xl absolute bottom-[200px] right-3">
 						{
-							(open === false )? <AiFillEyeInvisible onClick={toggle}/> : <AiFillEye onClick={toggle}/>
+							(open === false) ? <AiFillEyeInvisible onClick={toggle}/> : <AiFillEye onClick={toggle} />
 						}
 					</div>
 
 					<div className="text-2xl absolute bottom-[120px] right-3">
 						{
-							(openbis === false) ? <AiFillEyeInvisible onClick={togglebis}/> : <AiFillEye onClick={togglebis}/>
+							(openbis === false) ? <AiFillEyeInvisible onClick={togglebis}/> : <AiFillEye onClick={togglebis} />
 						}
 					</div>
 
@@ -92,15 +108,12 @@ const Inscription = (props) => {
 export default Inscription;
 
 Inscription.propTypes = {
-	onSubmit: func.isRequired,
 	open: bool.isRequired,
 	openbis: bool.isRequired,
 	toggle: func.isRequired,
 	togglebis: func.isRequired,
-	idUser: number,
 	checked: shape({
 		checked : bool.isRequired,
 	}).isRequired,
 	onChange: func.isRequired,
-	username: string.isRequired,
 };
