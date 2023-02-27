@@ -9,6 +9,7 @@ import HomePage from "./components/HomePage";
 import Inscription from "./components/Inscription";
 import Login from "./components/Login";
 import EditMyProfil from "./components/EditMyProfile";
+import MyProfil from "./components/MyProfil";
 import Team from "./components/Team";
 import Error from "./components/Error";
 import Card from "./components/Card";
@@ -34,7 +35,7 @@ const App = () => {
 	
 	
 	return (
-		<div className="flex flex-col min-h-screen">
+        <div className="flex flex-col min-h-screen">
 			<Header />
 			<Routes>	
 				<Route path="/" element={<HomePage />} />
@@ -48,7 +49,7 @@ const App = () => {
 						openbis={openbis}
 					/>
 				} />
-				<Route path="/qui-sommes-nous" element={<Team />} />
+				<Route path={'/qui-sommes-nous'} element={<Team />} />
 				<Route path="/connexion" element={
 					<Login
 						toggle={toggle}
@@ -56,6 +57,7 @@ const App = () => {
 					/>
 				} />
         <Route path="/mon-profil-edit" element={<EditMyProfil />} />
+				<Route path="/mon-profil" element={<MyProfil />} />
 				<Route path="/liste-des-terrains" element={<Card />} />
 				<Route path="/detail-terrain" element={<Details />} />
 				<Route path="/conditions-generales" element={<CGU />} />
@@ -63,7 +65,7 @@ const App = () => {
 			</Routes>
 			<Footer />
 		</div>
-	);
+    );
 };
 
 export default App;
