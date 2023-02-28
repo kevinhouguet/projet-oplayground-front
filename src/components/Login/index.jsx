@@ -13,7 +13,7 @@ const Login = (props) => {
 
 	const { 
 		handleSubmit, 
-		register, 
+		register,
 		formState : {errors},
 	} = useForm();
 
