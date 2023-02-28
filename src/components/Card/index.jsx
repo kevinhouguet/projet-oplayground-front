@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import basketball from "../../assets/basketball.jpg";
 // import Ligneshorizontales from "../../assets/Ligneshorizontales.jpg";
 
@@ -13,9 +14,9 @@ const Header = () => (
 				<p className="text-xl">Adresse : Avenue du canal</p>
 				<p className="text-xl">26600 PONT DE L'ISERE</p>
 				<div className="card-actions justify-end">
-					<a href="/detail-terrain">
+					<Link href="/detail-terrain">
 						<button className="btn btn-primary py-2 px-4 text-lg">Plus d'information</button> 
-					</a>
+					</Link>
 				</div>
 			</div>
 		</div>

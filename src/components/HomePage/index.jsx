@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 const HomePage = ({ options = ["Rennes", "Paris", "Lyon", "Saint-Malo"]}) => {
 
@@ -34,12 +35,12 @@ const HomePage = ({ options = ["Rennes", "Paris", "Lyon", "Saint-Malo"]}) => {
 		<div className="bg-cover bg-center flex-1 flex h-screen bg-[url('./assets/basketball.jpg')]">
 			<div className="h-full grid gap-10 m-auto">
 				<div className="flex gap-8">
-					<a href="/connexion">
+					<Link to="/connexion">
 						<button className="btn btn-primary py-4 px-8 flex items-center justify-center">Connexion</button>
-					</a>
-					<a href="/inscription">
+					</Link>
+					<Link to="/inscription">
 						<button className="btn btn-primary py-4 px-8 flex items-center justify-center">inscription</button>
-					</a>
+					</Link>
 				</div>
 
 				<div className="flex justify-around flex-col" ref={autocompleteRef} style={{ position: "relative" }}>
