@@ -8,8 +8,6 @@ const Header = () => (
 			<img src= {logoOP}  className="btn btn-ghost normal-case text-xl pointer-events-none" alt="Logo oplayground" />
 		</a>
 		<BurgerMenu />
-
-		{/* <button className="btn btn-active">Button</button> */}
 	</header>
 );
 export default Header;

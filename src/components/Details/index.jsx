@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 import basketball from "../../assets/basketball.jpg";
 import { FaMapMarkerAlt, FaInfo } from "react-icons/fa";
 
@@ -79,7 +81,10 @@ const Details = () => (
 				{/* Une modal pour réserver un terrain */}
 
 			</div>
-			<button className="btn btn-warning text-xl h-16">Créer un nouvel évenement</button>
+			<Link className="flex items-center justify-center" to="/creation-evenement">
+			<button className="btn btn-warning w-full text-xl h-16">Créer un nouvel évenement</button>
+			</Link>
+
 		</div>
 	</div>
 
