@@ -1,12 +1,13 @@
 /* eslint-disable react/no-unescaped-entities */
 import React from "react";
 import { FaTwitter, FaFacebook, FaGithub, FaInstagram  } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Footer = () => (
 	<footer className="footer bg-primary text-primary-content mt-auto p-5 flex justify-around">
 		<div>
-			<a href="/"><span className="footer-title text-3xl">O'playground</span></a>
-			<a href="/qui-sommes-nous" className="link link-hover">Qui sommes-nous ?</a>
+			<Link to="/"><span className="footer-title text-3xl">O'playground</span></Link>
+			<Link to="/qui-sommes-nous" className="link link-hover">Qui sommes-nous ?</Link>
 			<label htmlFor="my-modal" className="link link-hover">Contact</label>
 			<input type="checkbox" id="my-modal" className="modal-toggle" />
 			<div className="modal">
@@ -18,16 +19,16 @@ const Footer = () => (
 					</div>
 				</div>
 			</div>
-			<a href="/conditions-generales" className="link link-hover">Conditions générales</a>
+			<Link to="/conditions-generales" className="link link-hover">Conditions générales</Link>
 		</div>
 		
 		<div>
 			<span className="footer-title text-2xl">Nos réseaux</span>
 			<div className="flex space-x-4 m-auto">
-				<a className="link link-hover"> <FaFacebook /> </a>
-				<a className="link link-hover"> <FaTwitter /> </a>
-				<a className="link link-hover"> <FaGithub /> </a>
-				<a className="link link-hover"> <FaInstagram /> </a>
+				<Link className="link link-hover"> <FaFacebook /> </Link>
+				<Link className="link link-hover"> <FaTwitter /> </Link>
+				<Link className="link link-hover"> <FaGithub /> </Link>
+				<Link className="link link-hover"> <FaInstagram /> </Link>
 			</div>
 		</div>
 	</footer>

@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
+import jwt_decode from "jwt-decode";
 
 // import composant
 import Header from "./components/Header";
@@ -22,6 +23,17 @@ const App = () => {
 	const [checked, setChecked] = useState({ checked: false });
 	const [open, setOpen] = useState(false);
 	const [openbis, setOpenbis] = useState(false);
+	const [token, setToken] = useState("");
+	const [username, setUsername] = useState("");
+
+useEffect(() => {
+	const accessToken = localStorage.getItem("accessToken");
+	if (accessToken) {
+		setToken(accessToken);
+		const { username } = jwt_decode(accessToken);
+		setUsername(username);
+	}
+	}, []);
 	
 	const handleChange = (event) => {
 		setChecked({ checked: event.target.checked });
@@ -34,8 +46,13 @@ const App = () => {
 	const togglebis = () => {
 		setOpenbis(!openbis);
 	};
-	
-	
+
+	const logout = () => {
+		localStorage.removeItem("accessToken");
+		setToken("");
+		setUsername("");
+	};
+
 	return (
         <div className="flex flex-col min-h-screen">
 			<Header />
@@ -56,9 +73,14 @@ const App = () => {
 					<Login
 						toggle={toggle}
 						open={open}
+						username={username}
+						setToken={setToken}
+						setUsername={setUsername}
+						onLogout={logout}
+						token={token}
 					/>
 				} />
-        <Route path="/mon-profil-edit" element={<EditMyProfil />} />
+        		<Route path="/mon-profil-edit" element={<EditMyProfil />} />
 				<Route path="/mon-profil" element={<MyProfil />} />
 				<Route path="/liste-des-terrains" element={<Card />} />
 				<Route path="/detail-terrain" element={<Details />} />
