@@ -4,6 +4,7 @@ import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { bool, func, string } from "prop-types";
 import axios from "axios";
 import jwtDecode from "jwt-decode";
+import { Link } from "react-router-dom";
 
 
 const Login = (props) => {
@@ -64,8 +65,10 @@ const Login = (props) => {
 					<button className="btn btn-primary my-7 " type="submit"> Connexion </button>
 				</div>
 
-				<div className="flex justify-center">
-					<button className="btn btn-primary my-7 " type="button" onClick={onLogout} > Déconnexion </button>
+				<div className="underline pb-3">
+					<Link to="/inscription">
+						Tu n'as pas de compte ? Inscris toi ici !
+					</Link>
 				</div>
 
 			</form>
