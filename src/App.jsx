@@ -55,7 +55,7 @@ useEffect(() => {
 
 	return (
         <div className="flex flex-col min-h-screen">
-			<Header />
+			<Header username={username} isLogin={token} />
 			<Routes>	
 				<Route path="/" element={<HomePage />} />
 				<Route path="/inscription" element={
