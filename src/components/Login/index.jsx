@@ -63,11 +63,6 @@ const Login = (props) => {
 				<div className="flex justify-center">
 					<button className="btn btn-primary my-7 " type="submit"> Connexion </button>
 				</div>
-
-				<div className="flex justify-center">
-					<button className="btn btn-primary my-7 " type="button" onClick={onLogout} > Déconnexion </button>
-				</div>
-
 			</form>
 
 			{
@@ -92,7 +87,6 @@ Login.propTypes = {
 	open: bool.isRequired,
 	toggle: func.isRequired,
 	username: string,
-	onLogout: func.isRequired,
 	token: string,
 	setToken: func.isRequired,
 	setUsername: func.isRequired,
