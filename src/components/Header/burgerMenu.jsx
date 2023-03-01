@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { string, bool } from "prop-types";
 
-const BurgerMenu = () => {
+const BurgerMenu = (props) => {
+  const { username, isLogin } = props;
+
   const [isOpen, setIsOpen] = useState(false);
 
   const handleClick = () => {
@@ -15,7 +18,13 @@ const BurgerMenu = () => {
         className="btn btn-ghost rounded-btn"
         onClick={() => setIsOpen(!isOpen)}
       >
-        Bonjour Jean	&#127936;
+        {
+          isLogin
+          ?
+          `Bonjour ${username}`
+          :
+          "Menu"
+        }
       </label>
       <ul
         tabIndex={0}
@@ -36,3 +45,8 @@ const BurgerMenu = () => {
 };
 
 export default BurgerMenu;
+
+BurgerMenu.propTypes = {
+	username: string.isRequired,
+	isLogin: string.isRequired,
+};
