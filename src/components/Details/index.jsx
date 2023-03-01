@@ -1,8 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 
 import basketball from "../../assets/basketball.jpg";
 import { FaMapMarkerAlt, FaInfo } from "react-icons/fa";
+import EventCreation from "../Event/EventCreation";
 
 
 const Details = () => (
@@ -11,15 +12,15 @@ const Details = () => (
 			<h1 className="text-center text-4xl pb-16"> SALLE MULTISPORTS DE PONT-DE-L'ISERE</h1>
 
 			<div className="flex justify-evenly pb-10">
-				<img src={basketball} className="rounded-2xl w-1/6" alt="Album"/>
-				<img src={basketball} className="rounded-2xl w-1/6" alt="Album"/>
-				<img src={basketball} className="rounded-2xl w-1/6" alt="Album"/>
+				<img src={basketball} className="rounded-2xl w-1/6" alt="Album" />
+				<img src={basketball} className="rounded-2xl w-1/6" alt="Album" />
+				<img src={basketball} className="rounded-2xl w-1/6" alt="Album" />
 			</div>
 
 			<h2 className="text-3xl pb-1">Adresse <span className="inline-block"> <FaMapMarkerAlt /> </span></h2>
 			<p className="text-2xl">Avenue du canal</p>
 			<p className="text-2xl pb-10">26600 PONT DE L'ISERE</p>
-            
+
 			<h2 className="text-3xl pb-1"> Infos supplémentaires <span className="inline-block"> <FaInfo /> </span></h2>
 			<p className="text-2xl ">Surface : Gymnase</p>
 			<p className="text-2xl"> Capacité : 10 personnes max </p>
@@ -78,12 +79,22 @@ const Details = () => (
 						<p className="py-4 text-2xl">luna.martin@gmail.com</p>
 					</div>
 				</div>
-				{/* Une modal pour réserver un terrain */}
-
 			</div>
-			<Link className="flex items-center justify-center" to="/creation-evenement">
+
+			{/* <Link className="flex items-center justify-center" to="/creation-evenement">
 			<button className="btn btn-warning w-full text-xl h-16">Créer un nouvel évenement</button>
-			</Link>
+			</Link> */}
+
+			<label htmlFor="my-modal-4" className="btn btn-primary">Créer un nouvel évenement</label>
+			<input type="checkbox" id="my-modal-4" className="modal-toggle" />
+			<div className="modal">
+				<div className="modal-box relative">
+					<label htmlFor="my-modal-4" className="btn btn-sm btn-circle absolute right-2 top-2">✕
+					</label>
+					<EventCreation />
+				</div>
+			</div>
+
 
 		</div>
 	</div>

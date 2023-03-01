@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
+//recupérer en props la ville auquel est associé l'événement
 const EventCreation = () => {
   const [eventName, setEventName] = useState("");
   const [eventDate, setEventDate] = useState("");
@@ -33,8 +34,6 @@ const EventCreation = () => {
   };
 
   return (
-    <div className="h-screen flex items-center justify-center">
-      <div className="windowCreationEvent p-4 rounded-xl bg-slate-200">
         <form onSubmit={handleSubmit}>
           <div className="nameSection pb-3 flex justify-center">
             <label>
@@ -42,7 +41,7 @@ const EventCreation = () => {
               <input className="input input-warning w-auto max-w-xs " type="text" value={eventName} onChange={handleEventNameChange} />
             </label>
           </div>
-          <div className="dateAndTimeSection">
+          <div className="dateAndTimeSection flex justify-center">
             <label>
               Date de l'événement :
               <input className="rounded-md" type="date" value={eventDate} onChange={handleEventDateChange} />
@@ -54,13 +53,8 @@ const EventCreation = () => {
           </div>
           <div className="buttonSection py-4 flex justify-evenly">
             <button className="btn btn-primary" type="submit">Valider</button>
-            <Link to="/detail-terrain">
-              <button className="btn btn-primary" type="button" onClick={handleCancel}>Annuler</button>
-            </Link>
           </div>
         </form>
-      </div>
-    </div>
   );
 };
 
