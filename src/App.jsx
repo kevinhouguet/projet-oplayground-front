@@ -17,6 +17,7 @@ import Card from "./components/Card";
 import Details from "./components/Details";
 import CGU from "./components/CGU";
 import EventCreation from "./components/Event/EventCreation";
+import Mesevents from "./components/Mesevents";
 
 const App = () => {
 	const [checked, setChecked] = useState({ checked: false });
@@ -84,6 +85,7 @@ useEffect(() => {
 				<Route path="/liste-des-terrains" element={<Card />} />
 				<Route path="/detail-terrain" element={<Details />} />
 				<Route path="/creation-evenement" element={<EventCreation />} />
+				<Route path="/liste-des-evenements" element={<Mesevents />} />
 				<Route path="/conditions-generales" element={<CGU />} />
 				<Route path="*" element={<Error />} />
 			</Routes>
