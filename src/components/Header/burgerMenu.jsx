@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { string, bool } from "prop-types";
+import { string } from "prop-types";
 
 const BurgerMenu = (props) => {
   const { username, isLogin } = props;
