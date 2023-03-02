@@ -10,7 +10,7 @@ import jwtDecode from "jwt-decode";
 const Login = (props) => {
 	const [isError, setIsError] = useState(false);
 
-	const { open, toggle, token, setToken, username, setUsername } = props;
+	const { open, toggle, setToken, username, setUsername } = props;
 
 	const {
 		handleSubmit,
@@ -97,12 +97,6 @@ const Login = (props) => {
         
 			</form>
 
-			{
-				token
-				&&
-				<p> Bonjour {username}. Connexion réussi ! </p>
-			}
-			
 			{
 				isError
 				&&

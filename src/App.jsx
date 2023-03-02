@@ -86,7 +86,7 @@ const App = () => {
 					/>
 				} />
 				<Route path="/mon-profil-edit" element={<EditMyProfil />} />
-				<Route path="/mon-profil" element={<MyProfil token={token} idUser={idUser} />} />
+				<Route path="/mon-profil" element={<MyProfil idUser={idUser} username={username} />} />
 				<Route path="/liste-des-terrains" element={<Card />} />
 				<Route path="/detail-du-terrain/:city/:zipCode/:id" element={<Details />} />
 				{/* appelle api sur nouvelle route du back id terrain-events*/}
