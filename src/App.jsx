@@ -62,13 +62,9 @@ const App = () => {
 		<div className="flex flex-col min-h-screen">
 			<Header username={username} isLogin={token} onLogout={logout} />
 			<Routes>
-				<Route 
-					path="/" 
-					element={
-						<HomePage username={username}/>} />
-				<Route path="/inscription"
-					element={
-						<Inscription
+				<Route path="/" element={<HomePage />} />
+				<Route path="/inscription" element={
+					<Inscription
 						checked={checked}
 						onChange={handleChange}
 						toggle={toggle}
@@ -77,7 +73,7 @@ const App = () => {
 						openbis={openbis}
 					/>
 				} />
-				<Route path='/qui-sommes-nous' element={<Team />} />
+				<Route path={'/qui-sommes-nous'} element={<Team />} />
 				<Route path="/connexion" element={
 					<Login
 						toggle={toggle}

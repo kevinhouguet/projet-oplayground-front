@@ -1,29 +1,22 @@
 import React, { useState, useEffect, useRef } from "react";
 import AutocompleteInput from "../../components/HomePage/AutocompleteInput";
-import string from "prop-types";
+import { Link } from "react-router-dom";
 
-import ConnexionBtn from "./connexionBtn";
-import SubscriptionBtn from "./subscriptionBtn";
+const HomePage = () => (
+	<div className="bg-cover bg-center flex-1 flex h-screen bg-[url('./assets/basketball.jpg')]">
+		<div className="h-full grid gap-10 m-auto">
+			<div className="flex gap-8">
+				<Link to={"/connexion"}> 
+					<button className="btn btn-primary py-4 px-8 flex items-center justify-center">Connexion</button>
+				</Link>
 
-const HomePage = (props) => {
-	const { username } = props;
-	return (
-		<div className="bg-cover bg-center flex-1 flex h-screen bg-[url('./assets/basketball.jpg')]">
-			<div className="h-full grid gap-10 m-auto">
-				{!username ? (
-					<div className="flex gap-8">
-						<ConnexionBtn />
-						<SubscriptionBtn />
-					</div>
-				) : null}
-				<AutocompleteInput />
+				<Link to={"/inscription"}>
+					<button className="btn btn-primary py-4 px-8 flex items-center justify-center">inscription</button>
+				</Link>
 			</div>
+				<AutocompleteInput />
 		</div>
-	);
-};
+	</div>
+);
 
 export default HomePage;
-
-HomePage.prototype = {
-	username: string,
-}
