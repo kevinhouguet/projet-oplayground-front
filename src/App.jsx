@@ -25,13 +25,15 @@ const App = () => {
 	const [openbis, setOpenbis] = useState(false);
 	const [token, setToken] = useState("");
 	const [username, setUsername] = useState("");
+	const [idUser, setIdUser] = useState("");
 
 useEffect(() => {
 	const accessToken = localStorage.getItem("accessToken");
 	if (accessToken) {
 		setToken(accessToken);
-		const { username } = jwt_decode(accessToken);
+		const { username, id } = jwt_decode(accessToken);
 		setUsername(username);
+		setIdUser(id);
 	}
 	}, []);
 	
@@ -51,6 +53,7 @@ useEffect(() => {
 		localStorage.removeItem("accessToken");
 		setToken("");
 		setUsername("");
+		setIdUser("");
 	};
 
 	return (
@@ -80,8 +83,15 @@ useEffect(() => {
 						token={token}
 					/>
 				} />
-        		<Route path="/mon-profil-edit" element={<EditMyProfil />} />
-				<Route path="/mon-profil" element={<MyProfil />} />
+        		<Route path="/mon-profil-edit" element={<EditMyProfil identifiant={token} />} />
+				<Route path="/mon-profil" element={
+					<MyProfil
+						token={token}
+						idUser={idUser}
+						username={username} 
+					/>
+				} />
+						
 				<Route path="/liste-des-terrains" element={<Card />} />
 				<Route path="/detail-terrain" element={<Details />} />
 				<Route path="/creation-evenement" element={<EventCreation />} />

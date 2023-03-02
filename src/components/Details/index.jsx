@@ -1,6 +1,5 @@
 import React from "react";
 //import { Link } from "react-router-dom";
-
 import basketball from "../../assets/basketball.jpg";
 import { FaMapMarkerAlt, FaInfo } from "react-icons/fa";
 import EventCreation from "../Event/EventCreation";

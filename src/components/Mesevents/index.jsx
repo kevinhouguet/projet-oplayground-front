@@ -36,8 +36,6 @@ const Mesevents = () => {
     console.log("timestamp:", timestamp);
   };
 
-
-
   return (
 
     <div className="h-screen bg-cover bg-center bg-[url('./assets/white-painted-wall-texture-background.jpg')]">
