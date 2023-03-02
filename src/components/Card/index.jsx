@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-// import axios from "axios";
+import React from "react";
 import basketball from "../../assets/basketball.jpg";
 import { useLocation } from "react-router-dom";
 
@@ -8,17 +7,6 @@ const Header = () => {
 
   const location = useLocation();
   const data = location.state;
-  console.log(data)
-
-
-//   const [data, setData] = useState([]);
-
-//   useEffect(() => {
-//     axios
-//       .get("https://oplaygroundapi.herokuapp.com/api/terrains/26250")
-//       .then((response) => setData(response.data))
-//       .catch((error) => console.log(error));
-//   }, []);
 
   return (
     <div className="min-h-screen bg-cover bg-center flex flex-wrap justify-center bg-[url('./assets/white-painted-wall-texture-background.jpg')] p-10">

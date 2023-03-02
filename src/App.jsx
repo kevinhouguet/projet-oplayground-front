@@ -26,6 +26,7 @@ const App = () => {
 	const [openbis, setOpenbis] = useState(false);
 	const [token, setToken] = useState("");
 	const [username, setUsername] = useState("");
+	const [idUser, setIdUser] = useState("");
 
 
 	useEffect(() => {
@@ -53,6 +54,7 @@ const App = () => {
 		localStorage.removeItem("accessToken");
 		setToken("");
 		setUsername("");
+		setIdUser("");
 	};
 
 	return (

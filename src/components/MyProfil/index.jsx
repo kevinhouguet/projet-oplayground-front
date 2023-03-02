@@ -1,8 +1,38 @@
 import React, { useState } from "react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom"
-const MyProfil = () => {
+import axios from "axios";
+
+const MyProfil = (props) => {
+  
+  const [email, setEmail] = useState("");
+  const { idUser, username } = props;
+
+  useEffect(() => {
+    const response = () => {
+      axios.get(`https://oplaygroundapi.herokuapp.com/api/users/${idUser}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+        },
+      })
+        .then((response) => {
+          setEmail(response.data.email)
+          // Gérer la réponse de la requête
+          console.log(response.data);
+        })
+        .catch((error) => {
+          // Gérer les erreurs de la requête
+          console.error(error);
+        });
+    };
+
+    response();
+  }, [idUser]);
+
+
   const { register, handleSubmit, errors } = useForm();
+
   const onSubmit = data => console.log(data);
 
   return (
@@ -75,14 +105,14 @@ const MyProfil = () => {
           <div className="secondAreaSection bg-base-200 pb2-0 mx-4">
             <div className="textInuputArea mb-2 ">
               <div className="pseudoSection pb-1 pt-1 flex">
-                <p className="flex-1 px-4">Pseudo :</p>
+                <p className="flex-1 px-4"> Username </p>
                 <input className="input input-warning w-2/5 max-w-xs" type="text" placeholder="JeanDu92"
-                  {...register("username", { maxLength: 80 })} disabled />
+                  {...register("username", { maxLength: 80 })} disabled value={username} />
               </div>
               <div className="pseudoSection pb-1 flex">
-                <p className="flex-1 px-4">Adresse mail :</p>
+                <p className="flex-1 px-4"> Email </p>
                 <input className="input input-warning w-2/5 max-w-xs" type="email" placeholder="adressmail@gmail.com"
-                  {...register("email", { maxLength: 80 })} disabled />
+                  {...register("email", { maxLength: 80 })} disabled value={email}/>
               </div>
               <div className="password pb-1 flex">
                 <p className="flex-1 px-4">Mot de passe</p>

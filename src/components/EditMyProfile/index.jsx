@@ -2,9 +2,23 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 
-const EditMyProfil = () => {
+const EditMyProfil = (props) => {
+
+	const { token } = props;
+
 	const { register, handleSubmit, errors } = useForm();
-	const onSubmit = data => console.log(data);
+
+	const onSubmit = (data) => {
+		axios.patch(`https://oplaygroundapi.herokuapp.com/api/users/${userId}`, data)
+		  .then((response) => {
+			console.log(response.data);
+			// handle success, such as displaying a success message to the user
+		  })
+		  .catch((error) => {
+			console.log(error);
+			// handle error, such as displaying an error message to the user
+		  });
+	  };
 
 	return (
 		<div className="my-profil">
@@ -65,10 +79,6 @@ const EditMyProfil = () => {
 								<p className="flex-1 px-4">Adresse mail :</p>
 								<input className="input input-warning w-2/5 max-w-xs" type="email" placeholder="adressmail@gmail.com"
 									{...register("email", { maxLength: 80 })} />
-							</div>
-							<div className="password pb-1 flex">
-								<p className="flex-1 px-4">Mot de passe</p>
-								<p className="input input-warning w-2/5 max-w-xs">********</p>
 							</div>
 							<div className="newPassword pb-1 flex">
 								<p className="flex-1 px-4">Nouveau mot de passe :</p>
