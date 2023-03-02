@@ -62,16 +62,14 @@ const Login = (props) => {
 				<p className="text-sm">*Champs obligatoires</p>
 
 				<div className="flex justify-center">
-					<label htmlFor="my-modal" className="btn" type="submit">
-						Connexion
-					</label>
+						<button htmlFor="my-modal" className="btn btn-secondary" type="submit"> Connexion </button>
+
 					<input
 						checked={username ? true : false}
 						type="checkbox"
 						id="my-modal"
 						className="modal-toggle"
 						form="login-form"
-						onChange={() => {}}
 					/>
 					<div className="modal">
 						<div className="modal-box">
@@ -89,7 +87,14 @@ const Login = (props) => {
 						</div>
 					</div>
 				</div>
-			</form >
+
+        <div className="underline pb-3">
+					<Link to="/inscription">
+						Tu n'as pas de compte ? Inscris toi ici !
+					</Link>
+				</div>
+        
+			</form>
 
 			{
 				token

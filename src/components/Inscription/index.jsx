@@ -79,9 +79,17 @@ const Inscription = (props) => {
 						}
 					</div>
 
+
 					<div className="flex justify-center">
 						<button className="btn btn-primary my-7 " type="submit"> Inscription </button>
 					</div>
+					
+					<div className="underline pb-3">
+						<Link to="/connexion">
+							Tu as déjà un compte ? Clique ici
+						</Link>
+					</div>
+
 				</div>
 			</form>
 

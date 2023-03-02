@@ -21,7 +21,7 @@ const BurgerMenu = (props) => {
         {
           isLogin
           ?
-          `Bonjour ${username}`
+          <span>Bonjour {username} &#127936;</span> 
           :
           "Menu"
         }
