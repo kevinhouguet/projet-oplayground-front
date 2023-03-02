@@ -1,24 +1,26 @@
-import React, { useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { string } from "prop-types";
 
 const EditMyProfil = (props) => {
 
-	const { token } = props;
+	const { token, userId } = props;
 
 	const { register, handleSubmit, errors } = useForm();
 
 	const onSubmit = (data) => {
 		axios.patch(`https://oplaygroundapi.herokuapp.com/api/users/${userId}`, data)
-		  .then((response) => {
-			console.log(response.data);
+			.then((response) => {
+				console.log(response.data);
 			// handle success, such as displaying a success message to the user
-		  })
-		  .catch((error) => {
-			console.log(error);
+			})
+			.catch((error) => {
+				console.log(error);
 			// handle error, such as displaying an error message to the user
-		  });
-	  };
+			});
+	};
 
 	return (
 		<div className="my-profil">
@@ -95,13 +97,19 @@ const EditMyProfil = (props) => {
 					<div className="btnContainer py-2 flex items-center justify-evenly">
 						<input className="btn btn-primary" type="submit" />
 						<Link to="/mon-profil">
-						<button className="btn btn-primary">Annuler</button>
+							<button className="btn btn-primary">Annuler</button>
 						</Link>
 					</div>
 				</div>
 			</form>
 		</div>
 	);
-}
+};
 
 export default EditMyProfil;
+
+EditMyProfil.propTypes = {
+	userId: string,
+	token: string,
+};
+

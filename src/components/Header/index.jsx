@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import BurgerMenu from "./burgerMenu";
 import QuitBtn from "./quitBtn";
 
-import { string } from "prop-types";
+import { string, func } from "prop-types";
 
 const Header = (props) => {
 
@@ -29,4 +29,5 @@ export default Header;
 Header.propTypes = {
 	username: string.isRequired,
 	isLogin: string.isRequired,
+	onLogout: func.isRequired,
 };

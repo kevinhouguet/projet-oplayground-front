@@ -32,7 +32,7 @@ const Login = (props) => {
 				setIsError(true);
 			});
 	};
-
+		
 	return (
 		<div className="m-auto">
 
@@ -62,7 +62,7 @@ const Login = (props) => {
 				<p className="text-sm">*Champs obligatoires</p>
 
 				<div className="flex justify-center">
-						<button htmlFor="my-modal" className="btn btn-secondary" type="submit"> Connexion </button>
+					<button htmlFor="my-modal" className="btn btn-secondary" type="submit"> Connexion </button>
 
 					<input
 						checked={username ? true : false}
@@ -76,12 +76,12 @@ const Login = (props) => {
 						<div className="modal-box">
 							<h3 className="font-bold text-lg">Hey {username} te voila connecté</h3>
 							<p className="py-4">
-								Pret pour exploser les scores ? Les playground n'attendent que toi.
+								Pret pour exploser les scores ? Les playground n&apos;attendent que toi.
 							</p>
 							<div className="modal-action">
 								<Link to="/">
 									<label htmlFor="my-modal" className="btn">
-										C'est parti !
+										C&apos;est parti !
 									</label>
 								</Link>
 							</div>
@@ -89,9 +89,9 @@ const Login = (props) => {
 					</div>
 				</div>
 
-        <div className="underline pb-3">
+				<div className="underline pb-3">
 					<Link to="/inscription">
-						Tu n'as pas de compte ? Inscris toi ici !
+						Tu n&apos;as pas de compte ? Inscris toi ici !
 					</Link>
 				</div>
         
@@ -102,7 +102,7 @@ const Login = (props) => {
 				&&
 				<p> Bonjour {username}. Connexion réussi ! </p>
 			}
-
+			
 			{
 				isError
 				&&
@@ -122,4 +122,5 @@ Login.propTypes = {
 	token: string,
 	setToken: func.isRequired,
 	setUsername: func.isRequired,
+	isLogin: bool,
 };
