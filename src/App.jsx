@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 
 // import composant
@@ -85,7 +85,7 @@ const App = () => {
 					/>
 				} />
 				<Route path="/mon-profil-edit" element={<EditMyProfil />} />
-				<Route path="/mon-profil" element={<MyProfil />} />
+				<Route path="/mon-profil" element={<MyProfil token={token} idUser={idUser} />} />
 				<Route path="/liste-des-terrains" element={<Card />} />
 				<Route path="/detail-du-terrain/:city/:zipCode/:id" element={<Details />} />
 			{/* appelle api sur nouvelle route du back id terrain-events*/}
