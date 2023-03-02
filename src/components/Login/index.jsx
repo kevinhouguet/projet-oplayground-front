@@ -65,12 +65,12 @@ const Login = (props) => {
 					<button className="btn btn-primary my-7 " type="submit"> Connexion </button>
 				</div>
 
-				<div className="underline pb-3">
+        <div className="underline pb-3">
 					<Link to="/inscription">
 						Tu n'as pas de compte ? Inscris toi ici !
 					</Link>
 				</div>
-
+        
 			</form>
 
 			{
@@ -95,7 +95,6 @@ Login.propTypes = {
 	open: bool.isRequired,
 	toggle: func.isRequired,
 	username: string,
-	onLogout: func.isRequired,
 	token: string,
 	setToken: func.isRequired,
 	setUsername: func.isRequired,
