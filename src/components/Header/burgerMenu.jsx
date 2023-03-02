@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { string, bool } from "prop-types";
+import { string } from "prop-types";
 
 const BurgerMenu = (props) => {
   const { username, isLogin } = props;
@@ -21,7 +21,7 @@ const BurgerMenu = (props) => {
         {
           isLogin
           ?
-          `Bonjour ${username}`
+          <span>Bonjour {username} &#127936;</span> 
           :
           "Menu"
         }
