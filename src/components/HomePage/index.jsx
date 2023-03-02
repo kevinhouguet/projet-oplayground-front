@@ -1,15 +1,22 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
+import AutocompleteInput from "../../components/HomePage/AutocompleteInput";
+import { Link } from "react-router-dom";
 
 const HomePage = () => (
-	<div className="h-56  grid gap-10 content-center">
-		<div className="flex justify-evenly">
-			<button className="btn btn-primary">Connexion</button>
-			<button className="btn btn-primary">inscription</button>
-		</div>
-		<div className="flex justify-center">
-			<input type="text" placeholder="Entrez votre adresse" className="input input-bordered input-secondary input-md w-full max-w-xs" />
+	<div className="bg-cover bg-center flex-1 flex h-screen bg-[url('./assets/basketball.jpg')]">
+		<div className="h-full grid gap-10 m-auto">
+			<div className="flex gap-8">
+				<Link to={"/connexion"}> 
+					<button className="btn btn-primary py-4 px-8 flex items-center justify-center">Connexion</button>
+				</Link>
+
+				<Link to={"/inscription"}>
+					<button className="btn btn-primary py-4 px-8 flex items-center justify-center">inscription</button>
+				</Link>
+			</div>
+				<AutocompleteInput />
 		</div>
 	</div>
-
 );
+
 export default HomePage;

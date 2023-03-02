@@ -1,14 +1,32 @@
 import React from "react";
 import logoOP from "../../assets/logoOP.png";
-import "./styles.css";
+import { Link } from "react-router-dom";
 
-const Header = () => (
-	<header className="navbar bg-primary text-primary-content p-5">
-		<a href="/">
-			<img src= {logoOP}  className="btn btn-ghost normal-case text-xl pointer-events-none" alt="Logo oplayground" />
-		</a>
+import BurgerMenu from "./burgerMenu";
+import QuitBtn from "./quitBtn";
 
-		{/* <button className="btn btn-active">Button</button> */}
-	</header>
-);
+import { string } from "prop-types";
+
+const Header = (props) => {
+
+	const { username, isLogin, onLogout } = props;
+
+	return (
+		<header className="navbar bg-primary text-primary-content p-5 flex justify-between">
+			<Link to="/">
+				<img src={logoOP} className="btn btn-ghost normal-case text-xl pointer-events-none" alt="Logo oplayground" />
+			</Link>
+			<div className="flex-1 flex justify-end">
+				<BurgerMenu username={username} isLogin={isLogin} />
+				<QuitBtn onLogout={onLogout} />
+			</div>
+		</header>
+	);
+
+};
 export default Header;
+
+Header.propTypes = {
+	username: string.isRequired,
+	isLogin: string.isRequired,
+};
