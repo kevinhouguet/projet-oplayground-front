@@ -33,8 +33,9 @@ const App = () => {
 		const accessToken = localStorage.getItem("accessToken");
 		if (accessToken) {
 			setToken(accessToken);
-			const { username } = jwt_decode(accessToken);
+			const { username, id } = jwt_decode(accessToken);
 			setUsername(username);
+			setIdUser(id);
 		}
 	}, []);
 
@@ -85,7 +86,7 @@ const App = () => {
 					/>
 				} />
 				<Route path="/mon-profil-edit" element={<EditMyProfil />} />
-				<Route path="/mon-profil" element={<MyProfil token={token} idUser={idUser} />} />
+				<Route path="/mon-profil" element={<MyProfil idUser={idUser} username={username} />} />
 				<Route path="/liste-des-terrains" element={<Card />} />
 				<Route path="/detail-du-terrain/:city/:zipCode/:id" element={<Details />} />
 			{/* appelle api sur nouvelle route du back id terrain-events*/}
