@@ -63,7 +63,6 @@ const Login = (props) => {
 
 				<div className="flex justify-center">
 						<button htmlFor="my-modal" className="btn btn-secondary" type="submit"> Connexion </button>
-
 					<input
 						checked={username ? true : false}
 						type="checkbox"
