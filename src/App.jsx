@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 
 // import composant
@@ -35,7 +35,7 @@ const App = () => {
 			setToken(accessToken);
 			const { username, id } = jwt_decode(accessToken);
 			setUsername(username);
-			setIdUser(id);
+			setIdUser(Number(id));
 		}
 	}, []);
 
@@ -73,7 +73,7 @@ const App = () => {
 						openbis={openbis}
 					/>
 				} />
-				<Route path={'/qui-sommes-nous'} element={<Team />} />
+				<Route path={"/qui-sommes-nous"} element={<Team />} />
 				<Route path="/connexion" element={
 					<Login
 						toggle={toggle}
@@ -89,7 +89,7 @@ const App = () => {
 				<Route path="/mon-profil" element={<MyProfil idUser={idUser} username={username} />} />
 				<Route path="/liste-des-terrains" element={<Card />} />
 				<Route path="/detail-du-terrain/:city/:zipCode/:id" element={<Details />} />
-			{/* appelle api sur nouvelle route du back id terrain-events*/}
+				{/* appelle api sur nouvelle route du back id terrain-events*/}
 				<Route path="/creation-evenement" element={<EventCreation />} />
 				<Route path="/liste-des-evenements" element={<Mesevents />} />
 				<Route path="/conditions-generales" element={<CGU />} />

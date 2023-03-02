@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import AutocompleteInput from "../../components/HomePage/AutocompleteInput";
 import { Link } from "react-router-dom";
 
@@ -14,7 +14,7 @@ const HomePage = () => (
 					<button className="btn btn-primary py-4 px-8 flex items-center justify-center">inscription</button>
 				</Link>
 			</div>
-				<AutocompleteInput />
+			<AutocompleteInput />
 		</div>
 	</div>
 );

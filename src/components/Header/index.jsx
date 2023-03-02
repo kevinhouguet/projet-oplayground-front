@@ -7,7 +7,7 @@ import QuitBtn from "./quitBtn";
 import SubscriptionBtn from "../HomePage/subscriptionBtn";
 import ConnexionBtn from "../HomePage/connexionBtn";
 
-import { string } from "prop-types";
+import { string, func } from "prop-types";
 
 const Header = (props) => {
 
@@ -56,4 +56,5 @@ export default Header;
 Header.propTypes = {
 	username: string.isRequired,
 	isLogin: string.isRequired,
+	onLogout: func.isRequired,
 };
