@@ -70,12 +70,13 @@ const Login = (props) => {
 						id="my-modal"
 						className="modal-toggle"
 						form="login-form"
+						onChange={() => {}}
 					/>
 					<div className="modal">
 						<div className="modal-box">
-							<h3 className="font-bold text-lg">Hey {username} ca fait plaisir de te voir</h3>
+							<h3 className="font-bold text-lg">Hey {username} te voila connecté</h3>
 							<p className="py-4">
-								You've been selected for a chance to get one year of subscription to use Wikipedia for free!
+								Pret pour exploser les scores ? Les playground n'attendent que toi.
 							</p>
 							<div className="modal-action">
 								<Link to="/">
