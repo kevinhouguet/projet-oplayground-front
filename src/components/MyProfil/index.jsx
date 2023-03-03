@@ -1,13 +1,20 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, Route, Routes } from "react-router-dom";
 import axios from "axios";
 import { string, number } from "prop-types";
+import EditMyProfil from "./EditMyProfile";
 
 const MyProfil = (props) => {
   
-	const [email, setEmail] = useState("");
+	const [data, setData] = useState({
+		firstname: "",
+		lastname: "",
+		age: "",
+		sexe: "",
+		city: "",
+	});
 	const { idUser, username } = props;
 
 	useEffect(() => {
@@ -18,7 +25,7 @@ const MyProfil = (props) => {
 				},
 			})
 				.then((response) => {
-					setEmail(response.data.email);
+					setData(response.data);
 					// Gérer la réponse de la requête
 					console.log(response.data);
 				})
@@ -34,7 +41,7 @@ const MyProfil = (props) => {
 
 	const { register, handleSubmit, errors } = useForm();
 
-	const onSubmit = data => console.log(data);
+	const onSubmit = (data) => setData(data);
 
 	return (
 		<div className="my-profil">
@@ -44,10 +51,13 @@ const MyProfil = (props) => {
 					<p className="text-sm">Retrouvez et mettez à jour ici toutes vos informations personnelles.</p>
 				</div>
 				<div className="btnArea flex flex-col mt-2 ">
-					<Link to="/mon-profil-edit">
+					<Routes>
+						<Route path="/mon-profil-edit/:id" element={<EditMyProfil idUser={idUser} dataUser={data} />} />
+					</Routes>
+					<Link to={`/mon-profil-edit/${idUser}`}>
 						<button className="btn btn-sm btn-secondary my-2">Editer mon profil</button>
 					</Link>
-					<label htmlFor="my-modal-6" className="btn btn-sm btn-secondary">Supprimer mon profil</label>
+					<label htmlFor="my-modal-6" className="btn btn-sm btn-secondary bg-red-600">Supprimer mon profil</label>
 					<input type="checkbox" id="my-modal-6" className="modal-toggle" />
 					<div className="modal modal-bottom sm:modal-middle">
 						<div className="modal-box">
@@ -68,32 +78,32 @@ const MyProfil = (props) => {
 						<div className="textInuputArea">
 							<div className="fistNameSection pb-1 pt-1 flex">
 								<p className="flex-1 px-4 mt-1">Prénom:</p>
-								<input className="input input-warning w-2/5 max-w-xs " type="text" placeholder="Jean"
-									{...register("firstName", { maxLength: 80 })} disabled />
+								<input className="input input-warning w-2/5 max-w-xs " type="text" placeholder="Votre prénom"
+									{...register("firstName", { maxLength: 80 })} disabled value={data.firstname} />
 							</div>
 							<div className="lastNameSection pb-1 flex">
 								<p className="flex-1 px-4">Nom :</p>
-								<input className="input input-warning w-2/5 max-w-xs" type="text" placeholder="Dugenoux"
-									{...register("lastName", { maxLength: 100 })} disabled />
+								<input className="input input-warning w-2/5 max-w-xs" type="text" placeholder="Votre nom"
+									{...register("lastName", { maxLength: 100 })} disabled value={data.lastname} />
 							</div>
 							<div className="ageSection pb-1 flex">
 								<p className="flex-1 px-4">Age :</p>
-								<input className="input input-warning w-2/5 max-w-xs" type="number" placeholder="29"
-									{...register("age", { pattern: /^\S+@\S+$/i })} disabled />
+								<input className="input input-warning w-2/5 max-w-xs" type="number" placeholder="Votre age"
+									{...register("age", { pattern: /^\S+@\S+$/i })} disabled value={data.age} />
 							</div>
 							<div className="sexeSection pb-1 flex justify-between">
 								<p className="flex-1 px-4">Sexe :</p>
 								<select className="input input-warning w-2/5 py-0 max-w-xs"
 									{...register("Sexe", {})} disabled>
 									<option value="Homme">Homme</option>
-									<option value=" Femme"> Femme</option>
-									<option value=" Non renseigné"> Non renseigné</option>
+									<option value="Femme">Femme</option>
+									<option value=" Non renseigné">Non renseigné</option>
 								</select>
 							</div>
 							<div className="cityArea pb-1 flex">
 								<p className="flex-1 px-4">Localisation :</p>
-								<input className="input input-warning w-2/5 max-w-xs" type="text" placeholder="Votre ville "
-									{...register("Location", { minLength: 8 })} disabled />
+								<input className="input input-warning w-2/5 max-w-xs" type="text" placeholder="Votre ville"
+									{...register("Location", { minLength: 8 })} disabled value={data.city} />
 							</div>
 						</div>
 						<div className="imageInputArea">
@@ -113,7 +123,7 @@ const MyProfil = (props) => {
 							<div className="pseudoSection pb-1 flex">
 								<p className="flex-1 px-4"> Email </p>
 								<input className="input input-warning w-2/5 max-w-xs" type="email" placeholder="adressmail@gmail.com"
-									{...register("email", { maxLength: 80 })} disabled value={email}/>
+									{...register("email", { maxLength: 80 })} disabled value={data.email}/>
 							</div>
 							<div className="password pb-1 flex">
 								<p className="flex-1 px-4">Mot de passe</p>
@@ -141,5 +151,5 @@ export default MyProfil;
 
 MyProfil.propTypes = {
 	username: string,
-	idUser: string,
+	idUser: number,
 };

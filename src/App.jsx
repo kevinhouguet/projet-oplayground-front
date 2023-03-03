@@ -9,7 +9,6 @@ import Footer from "./components/Footer";
 import HomePage from "./components/HomePage";
 import Inscription from "./components/Inscription";
 import Login from "./components/Login";
-import EditMyProfil from "./components/EditMyProfile";
 import MyProfil from "./components/MyProfil";
 import Team from "./components/Team";
 import Error from "./components/Error";
@@ -26,7 +25,7 @@ const App = () => {
 	const [openbis, setOpenbis] = useState(false);
 	const [token, setToken] = useState("");
 	const [username, setUsername] = useState("");
-	const [idUser, setIdUser] = useState("");
+	const [idUser, setIdUser] = useState();
 
 
 	useEffect(() => {
@@ -55,7 +54,7 @@ const App = () => {
 		localStorage.removeItem("accessToken");
 		setToken("");
 		setUsername("");
-		setIdUser("");
+		setIdUser();
 	};
 
 	return (
@@ -85,7 +84,6 @@ const App = () => {
 						token={token}
 					/>
 				} />
-				<Route path="/mon-profil-edit" element={<EditMyProfil />} />
 				<Route path="/mon-profil" element={<MyProfil idUser={idUser} username={username} />} />
 				<Route path="/liste-des-terrains" element={<Card />} />
 				<Route path="/detail-du-terrain/:city/:zipCode/:id" element={<Details />} />
