@@ -25,8 +25,8 @@ const Inscription = (props) => {
 		formState : { errors },
 	} = useForm();
 
-	const onSubmit = (data) => {
-		axios.post("https://oplaygroundapi.herokuapp.com/api/users", data)
+	const onSubmit = ({ email, username, password }) => {
+		axios.post("https://oplaygroundapi.herokuapp.com/api/users", { email, username, password })
 			.then((response) => {
 				setIdUser(Number(response.data.id));
 				setUsername(response.data.username);
