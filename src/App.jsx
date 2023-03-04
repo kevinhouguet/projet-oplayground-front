@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 
 // import composant
@@ -9,7 +9,6 @@ import Footer from "./components/Footer";
 import HomePage from "./components/HomePage";
 import Inscription from "./components/Inscription";
 import Login from "./components/Login";
-import EditMyProfil from "./components/EditMyProfile";
 import MyProfil from "./components/MyProfil";
 import Team from "./components/Team";
 import Error from "./components/Error";
@@ -26,7 +25,8 @@ const App = () => {
 	const [openbis, setOpenbis] = useState(false);
 	const [token, setToken] = useState("");
 	const [username, setUsername] = useState("");
-	const [idUser, setIdUser] = useState("");
+	const [idUser, setIdUser] = useState();
+	const [isDisabled, setDisabled] = useState(true);
 
 
 	useEffect(() => {
@@ -39,8 +39,20 @@ const App = () => {
 		}
 	}, []);
 
+	if (token) {
+		const removeToken = () => {
+			logout();
+		};
+		setTimeout(removeToken, 1 * 60 * 60 * 1000); // Déconnexion automatique après 1 minute
+	}
+
+
 	const handleChange = (event) => {
 		setChecked({ checked: event.target.checked });
+	};
+
+	const changeDisabled = () => {
+		setDisabled(!isDisabled);
 	};
 
 	const toggle = () => {
@@ -55,12 +67,14 @@ const App = () => {
 		localStorage.removeItem("accessToken");
 		setToken("");
 		setUsername("");
-		setIdUser("");
+		setIdUser();
+		window.location.replace("/");
+		alert("Vous êtes déconnecté, si besoin reconnectez-vous...");
 	};
 
 	return (
 		<div className="flex flex-col min-h-screen">
-			<Header username={username} isLogin={token} onLogout={logout} />
+			<Header username={username} idUser={idUser} isLogin={token} onLogout={logout} />
 			<Routes>
 				<Route path="/" element={<HomePage />} />
 				<Route path="/inscription" element={
@@ -73,23 +87,31 @@ const App = () => {
 						openbis={openbis}
 					/>
 				} />
-				<Route path={'/qui-sommes-nous'} element={<Team />} />
+				<Route path={"/qui-sommes-nous"} element={<Team />} />
 				<Route path="/connexion" element={
 					<Login
 						toggle={toggle}
 						open={open}
 						username={username}
+						idUser={idUser}
 						setToken={setToken}
 						setUsername={setUsername}
 						onLogout={logout}
 						token={token}
+						setIdUser={setIdUser}
 					/>
 				} />
-				<Route path="/mon-profil-edit" element={<EditMyProfil />} />
-				<Route path="/mon-profil" element={<MyProfil idUser={idUser} username={username} />} />
+				<Route path="/mon-profil" element={
+					<MyProfil 
+						idUser={idUser} 
+						username={username} 
+						changeDisabled={changeDisabled}
+						isDisabled={isDisabled} 
+					/>
+				} />
 				<Route path="/liste-des-terrains" element={<Card />} />
 				<Route path="/detail-du-terrain/:city/:zipCode/:id" element={<Details />} />
-			{/* appelle api sur nouvelle route du back id terrain-events*/}
+				{/* appelle api sur nouvelle route du back id terrain-events*/}
 				<Route path="/creation-evenement" element={<EventCreation />} />
 				<Route path="/liste-des-evenements" element={<Mesevents />} />
 				<Route path="/conditions-generales" element={<CGU />} />

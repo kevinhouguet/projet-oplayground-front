@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import { bool, func, string } from "prop-types";
+import { bool, func, string, number } from "prop-types";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import jwtDecode from "jwt-decode";
@@ -10,7 +10,7 @@ import jwtDecode from "jwt-decode";
 const Login = (props) => {
 	const [isError, setIsError] = useState(false);
 
-	const { open, toggle, token, setToken, username, setUsername } = props;
+	const { open, toggle, setToken, username, setUsername, setIdUser } = props;
 
 	const {
 		handleSubmit,
@@ -26,13 +26,14 @@ const Login = (props) => {
 				setToken(response.data.accessToken);
 				setIsError(false);
 				setUsername(jwtDecode(response.data.accessToken).username);
+				setIdUser(jwtDecode(response.data.accessToken).id);
 			})
 			.catch((error) => {
 				console.error(error);
 				setIsError(true);
 			});
 	};
-
+		
 	return (
 		<div className="m-auto">
 
@@ -62,7 +63,7 @@ const Login = (props) => {
 				<p className="text-sm">*Champs obligatoires</p>
 
 				<div className="flex justify-center">
-						<button htmlFor="my-modal" className="btn btn-secondary" type="submit"> Connexion </button>
+					<button htmlFor="my-modal" className="btn btn-secondary" type="submit"> Connexion </button>
 
 					<input
 						checked={username ? true : false}
@@ -76,12 +77,12 @@ const Login = (props) => {
 						<div className="modal-box">
 							<h3 className="font-bold text-lg">Hey {username} te voila connecté</h3>
 							<p className="py-4">
-								Pret pour exploser les scores ? Les playground n'attendent que toi.
+								Pret pour exploser les scores ? Les playground n&apos;attendent que toi.
 							</p>
 							<div className="modal-action">
 								<Link to="/">
 									<label htmlFor="my-modal" className="btn">
-										C'est parti !
+										C&apos;est parti !
 									</label>
 								</Link>
 							</div>
@@ -89,19 +90,13 @@ const Login = (props) => {
 					</div>
 				</div>
 
-        <div className="underline pb-3">
+				<div className="underline pb-3">
 					<Link to="/inscription">
-						Tu n'as pas de compte ? Inscris toi ici !
+						Tu n&apos;as pas de compte ? Inscris toi ici !
 					</Link>
 				</div>
         
 			</form>
-
-			{
-				token
-				&&
-				<p> Bonjour {username}. Connexion réussi ! </p>
-			}
 
 			{
 				isError
@@ -122,4 +117,7 @@ Login.propTypes = {
 	token: string,
 	setToken: func.isRequired,
 	setUsername: func.isRequired,
+	setIdUser: func.isRequired,
+	isLogin: bool,
+	idUser: number,
 };
