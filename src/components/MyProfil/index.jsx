@@ -4,8 +4,6 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { number, func, bool } from "prop-types";
 import { Link } from "react-router-dom";
-// import { Link } from "react-router-dom";
-
 
 const MyProfil = (props) => {
 
@@ -15,7 +13,6 @@ const MyProfil = (props) => {
 	const [city, setCity] = useState(data.city);
 	const [username, setUsername] = useState(data.username);
 	const [age, setAge] = useState(data.age);
-
 
 	const { idUser, changeDisabled, isDisabled } = props;
 
@@ -43,7 +40,7 @@ const MyProfil = (props) => {
 	}, [idUser]);
 
 	const { register, handleSubmit } = useForm();
-
+	
 	const onUpdate = ({ lastname, firstname, city, password, username, age, sexe }) => {
 		axios.patch(`https://oplaygroundapi.herokuapp.com/api/users/${idUser}`, 
 			{ 
@@ -52,7 +49,7 @@ const MyProfil = (props) => {
 				city, 
 				password, 
 				username, 
-				age: Number(age), 
+				age, 
 				sexe 
 			}, {
 				headers: {
