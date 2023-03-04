@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import { bool, func, string } from "prop-types";
+import { bool, func, string, number } from "prop-types";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import jwtDecode from "jwt-decode";
@@ -10,7 +10,7 @@ import jwtDecode from "jwt-decode";
 const Login = (props) => {
 	const [isError, setIsError] = useState(false);
 
-	const { open, toggle, setToken, username, setUsername } = props;
+	const { open, toggle, setToken, username, setUsername, setIdUser } = props;
 
 	const {
 		handleSubmit,
@@ -26,6 +26,7 @@ const Login = (props) => {
 				setToken(response.data.accessToken);
 				setIsError(false);
 				setUsername(jwtDecode(response.data.accessToken).username);
+				setIdUser(jwtDecode(response.data.accessToken).id);
 			})
 			.catch((error) => {
 				console.error(error);
@@ -116,5 +117,7 @@ Login.propTypes = {
 	token: string,
 	setToken: func.isRequired,
 	setUsername: func.isRequired,
+	setIdUser: func.isRequired,
 	isLogin: bool,
+	idUser: number,
 };
