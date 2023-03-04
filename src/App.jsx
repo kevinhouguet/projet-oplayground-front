@@ -26,6 +26,7 @@ const App = () => {
 	const [token, setToken] = useState("");
 	const [username, setUsername] = useState("");
 	const [idUser, setIdUser] = useState();
+	const [isDisabled, setDisabled] = useState(true);
 
 
 	useEffect(() => {
@@ -34,12 +35,24 @@ const App = () => {
 			setToken(accessToken);
 			const { username, id } = jwt_decode(accessToken);
 			setUsername(username);
-			setIdUser(Number(id));
+			setIdUser(id);
 		}
 	}, []);
 
+	if (token) {
+		const removeToken = () => {
+			logout();
+		};
+		setTimeout(removeToken, 1 * 60 * 60 * 1000); // Déconnexion automatique après 1 minute
+	}
+
+
 	const handleChange = (event) => {
 		setChecked({ checked: event.target.checked });
+	};
+
+	const changeDisabled = () => {
+		setDisabled(!isDisabled);
 	};
 
 	const toggle = () => {
@@ -55,11 +68,13 @@ const App = () => {
 		setToken("");
 		setUsername("");
 		setIdUser();
+		window.location.replace("/");
+		alert("Vous êtes déconnecté, si besoin reconnectez-vous...");
 	};
 
 	return (
 		<div className="flex flex-col min-h-screen">
-			<Header username={username} isLogin={token} onLogout={logout} />
+			<Header username={username} idUser={idUser} isLogin={token} onLogout={logout} />
 			<Routes>
 				<Route path="/" element={<HomePage />} />
 				<Route path="/inscription" element={
@@ -78,13 +93,22 @@ const App = () => {
 						toggle={toggle}
 						open={open}
 						username={username}
+						idUser={idUser}
 						setToken={setToken}
 						setUsername={setUsername}
 						onLogout={logout}
 						token={token}
+						setIdUser={setIdUser}
 					/>
 				} />
-				<Route path="/mon-profil" element={<MyProfil idUser={idUser} username={username} />} />
+				<Route path="/mon-profil" element={
+					<MyProfil 
+						idUser={idUser} 
+						username={username} 
+						changeDisabled={changeDisabled}
+						isDisabled={isDisabled} 
+					/>
+				} />
 				<Route path="/liste-des-terrains" element={<Card />} />
 				<Route path="/detail-du-terrain/:city/:zipCode/:id" element={<Details />} />
 				{/* appelle api sur nouvelle route du back id terrain-events*/}

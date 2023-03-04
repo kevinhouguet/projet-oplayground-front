@@ -20,7 +20,7 @@ function AutocompleteInput() {
 					setSuggestions(response.data);
 				})
 				.catch((error) => {
-					console.log(error);
+					console.error(error);
 				});
 		} else {
 			setSuggestions([]);
@@ -49,15 +49,6 @@ function AutocompleteInput() {
 				console.log(error);
 			});
 	}
-
-	//   function handleSubmit(event) {
-	//     event.preventDefault();
-	//     const searchObj = {
-	//       searchTerm: searchTerm,
-	//       zipCode: selectedCodePostal,
-	//     };
-	//     console.log(searchObj);
-	//   }
 
 	return (
 		<form onSubmit={handleSubmit} className="">

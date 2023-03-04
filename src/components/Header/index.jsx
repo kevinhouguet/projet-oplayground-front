@@ -4,8 +4,6 @@ import { Link, useLocation } from "react-router-dom";
 
 import BurgerMenu from "./burgerMenu";
 import QuitBtn from "./quitBtn";
-import SubscriptionBtn from "../HomePage/subscriptionBtn";
-import ConnexionBtn from "../HomePage/connexionBtn";
 
 import { string, func } from "prop-types";
 
@@ -29,7 +27,7 @@ const Header = (props) => {
 					<>
 						<Link to={"/inscription"}>
 							<button className="btn btn-secondary py-4 px-8 mx-2 flex items-center ">
-								inscription
+								Inscription
 							</button>
 						</Link>
 						<Link to={"/connexion"}>
