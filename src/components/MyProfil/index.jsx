@@ -5,16 +5,14 @@ import axios from "axios";
 import { number, func, bool } from "prop-types";
 import { Link } from "react-router-dom";
 
-const MyProfil = (props) => {
+const MyProfil = ({ idUser, changeDisabled, isDisabled }) => {
 
 	const [data, setData] = useState({});
-	const [firstname, setFirstname] = useState(data.firstname);
+	const [firstname, setFirstname] = useState(data.firstname );
 	const [lastname, setLastname] = useState(data.lastname);
 	const [city, setCity] = useState(data.city);
 	const [username, setUsername] = useState(data.username);
 	const [age, setAge] = useState(data.age);
-
-	const { idUser, changeDisabled, isDisabled } = props;
 
 	useEffect(() => {
 		const response = () => {
@@ -37,11 +35,12 @@ const MyProfil = (props) => {
 		};
 
 		response();
-	}, [idUser]);
+	}, []);
 
 	const { register, handleSubmit } = useForm();
 	
-	const onUpdate = ({ lastname, firstname, city, password, username, age, sexe }) => {
+	const onUpdate = ({ lastname, firstname, city, password, username, age, sexe, avatar }) => {
+		console.log("avatar", avatar);
 		axios.patch(`https://oplaygroundapi.herokuapp.com/api/users/${idUser}`, 
 			{ 
 				lastname, 
@@ -57,6 +56,7 @@ const MyProfil = (props) => {
 				},
 			})
 			.then((response) => {
+				console.log("log response", response);
 				setData(response.data);
 				setFirstname(response.data.firstname);
 				setLastname(response.data.lastname);
@@ -146,18 +146,18 @@ const MyProfil = (props) => {
 							<div className="cityArea pb-1 flex">
 								<p className="flex-1 px-4">Localisation :</p>
 								<input className="input input-warning w-2/5 max-w-xs" type="text" placeholder={data.city}
-									{...register("city", { minLength: 8 })} 
+									{...register("city", { minLength: 2 })} 
 									disabled={isDisabled} 
 									value={city}
 									onChange={(event) => setCity(event.target.value)}
 								/>
 							</div>
 						</div>
-						<div className="imageInputArea">
+						{/* <div className="imageInputArea">
 							<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBbjlEHBqqh5beLO_wisopY5OqX1j1AcXc6O7Hfmf_T1ndC_vo7uqMXGopWenZ3hCm9vM&usqp=CAU" alt="avatar" />
 							<input type="file" name="avatar"
 								{...register("avatar")} disabled={isDisabled} />
-						</div>
+						</div> */}
 					</div>
 					<div className="titleArea bg-yellow-300 py-1 px-4 mx-4 my-2">Mes informations personnelles</div>
 					<div className="secondAreaSection bg-base-200 pb2-0 mx-4">
@@ -199,7 +199,7 @@ const MyProfil = (props) => {
 												{...register("Confirmation du nouveau mot de passe", { min: 8 })} />
 										</div> 
 										<div className="btnContainer py-2 flex items-center justify-evenly">
-											<input className="btn btn-primary" type="submit" value="Valider" />
+											<input onClick={() => {console.log("state :",lastname, firstname, city, username, age);}} className="btn btn-primary" type="submit" value="Valider" />
 											<Link to="/mon-profil">
 												<button className="btn btn-primary">Annuler</button>
 											</Link>
