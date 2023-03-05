@@ -12,11 +12,13 @@ import Login from "./components/Login";
 import MyProfil from "./components/MyProfil";
 import Team from "./components/Team";
 import Error from "./components/Error";
-import Card from "./components/Card";
-import Details from "./components/Details";
+// import Card from "./components/Card";
+// import Details from "./components/Details";
 import CGU from "./components/CGU";
 import EventCreation from "./components/Event/EventCreation";
-import Mesevents from "./components/Mesevents";
+import Mesevents from "./components/MesEvents";
+import PlaygroundsResult from "./components/PlaygroundsResult";
+import PlaygroundDetails from "./components/PlaygroundDetails";
 
 
 const App = () => {
@@ -27,6 +29,11 @@ const App = () => {
 	const [username, setUsername] = useState("");
 	const [idUser, setIdUser] = useState();
 	const [isDisabled, setDisabled] = useState(true);
+	const [data, setData] = useState([]);
+
+	const updateData = (newData) => {
+		setData(newData);
+	};
 
 
 	useEffect(() => {
@@ -109,8 +116,8 @@ const App = () => {
 						isDisabled={isDisabled} 
 					/>
 				} />
-				<Route path="/liste-des-terrains" element={<Card />} />
-				<Route path="/detail-du-terrain/:city/:zipCode/:id" element={<Details />} />
+				<Route path="/liste-des-terrains" element={<PlaygroundsResult updateData={updateData} />} />
+				<Route path="/detail-du-terrain/:id" element={<PlaygroundDetails data={data} />} />
 				{/* appelle api sur nouvelle route du back id terrain-events*/}
 				<Route path="/creation-evenement" element={<EventCreation />} />
 				<Route path="/liste-des-evenements" element={<Mesevents />} />
