@@ -39,8 +39,7 @@ const MyProfil = ({ idUser, changeDisabled, isDisabled }) => {
 
 	const { register, handleSubmit } = useForm();
 	
-	const onUpdate = ({ lastname, firstname, city, password, username, age, sexe, avatar }) => {
-		console.log("avatar", avatar);
+	const onUpdate = ({ lastname, firstname, city, password, username, age, sexe }) => {
 		axios.patch(`https://oplaygroundapi.herokuapp.com/api/users/${idUser}`, 
 			{ 
 				lastname, 

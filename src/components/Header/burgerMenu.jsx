@@ -8,7 +8,7 @@ const BurgerMenu = (props) => {
 	const [isOpen, setIsOpen] = useState(false);
 
 	const handleClick = () => {
-		setIsOpen(false);
+		setIsOpen(!isOpen);
 	};
 
 	return (
@@ -16,12 +16,12 @@ const BurgerMenu = (props) => {
 			<label
 				tabIndex={0}
 				className="btn btn-ghost rounded-btn"
-				onClick={() => setIsOpen(!isOpen)}
+				onClick={handleClick}
 			>
 				{
 					isLogin
 						?
-						<span>Bonjour {username} &#127936;</span> 
+						<span>Bonjour {username} {/*&#127936;*/}</span>  
 						:
 						"Menu"
 				}
@@ -37,7 +37,9 @@ const BurgerMenu = (props) => {
 					</Link>
 				</li>
 				<li>
-					<a onClick={handleClick}>Mes événements</a>
+					<Link to="/liste-des-evenements" onClick={handleClick}>
+				Mes événements
+					</Link>
 				</li>
 			</ul>
 		</div>
