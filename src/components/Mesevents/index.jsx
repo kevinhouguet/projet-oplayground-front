@@ -1,11 +1,29 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { number } from "prop-types";
 
-const Mesevents = () => {
+const Mesevents = ({idUser}) => {
 
 	const [eventName, setEventName] = useState("");
 	const [eventDate, setEventDate] = useState("");
 	const [eventTime, setEventTime] = useState("");
 	const [modificationEvent, setModificationEvent] = useState(false);
+
+	useEffect(() => {
+		console.log("idUser", idUser);
+		axios.get(`https://oplaygroundapi.herokuapp.com/api/users/${idUser}/events`, {
+			headers: {
+				Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+			},
+		})
+			.then((response) => {
+				console.log("log response", response);
+			})
+			.catch((error) => {
+				console.error(error);
+			});
+	
+	}, []);
 
 	const handleButtonClick = () => {
 		setModificationEvent(!modificationEvent);
@@ -35,6 +53,7 @@ const Mesevents = () => {
 		console.log("Nom de l'événement :", eventName);
 		console.log("timestamp:", timestamp);
 	};
+
 
 	return (
 
@@ -86,3 +105,7 @@ const Mesevents = () => {
 };
 
 export default Mesevents;
+
+Mesevents.propTypes = {
+	idUser: number,
+};

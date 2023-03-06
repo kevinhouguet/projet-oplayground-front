@@ -12,8 +12,6 @@ import Login from "./components/Login";
 import MyProfil from "./components/MyProfil";
 import Team from "./components/Team";
 import Error from "./components/Error";
-// import Card from "./components/Card";
-// import Details from "./components/Details";
 import CGU from "./components/CGU";
 import EventCreation from "./components/Event/EventCreation";
 import Mesevents from "./components/MesEvents";
@@ -30,6 +28,7 @@ const App = () => {
 	const [idUser, setIdUser] = useState();
 	const [isDisabled, setDisabled] = useState(true);
 	const [data, setData] = useState([]);
+	const [events, setEvents] = useState([]);
 
 	const updateData = (newData) => {
 		setData(newData);
@@ -50,7 +49,7 @@ const App = () => {
 		const removeToken = () => {
 			logout();
 		};
-		setTimeout(removeToken, 1 * 60 * 60 * 1000); // Déconnexion automatique après 1 minute
+		setTimeout(removeToken, 2 * 60 * 60 * 1000); // Déconnexion automatique après 2 heures
 	}
 
 
@@ -117,10 +116,10 @@ const App = () => {
 					/>
 				} />
 				<Route path="/liste-des-terrains" element={<PlaygroundsResult updateData={updateData} />} />
-				<Route path="/detail-du-terrain/:id" element={<PlaygroundDetails data={data} />} />
+				<Route path="/detail-du-terrain/:id" element={<PlaygroundDetails data={data} idUser={idUser} setEvents={setEvents} events={events} />} />
 				{/* appelle api sur nouvelle route du back id terrain-events*/}
 				<Route path="/creation-evenement" element={<EventCreation />} />
-				<Route path="/liste-des-evenements" element={<Mesevents />} />
+				<Route path="/liste-des-evenements" element={<Mesevents idUser={idUser} events={events} />} />
 				<Route path="/conditions-generales" element={<CGU />} />
 				<Route path="*" element={<Error />} />
 			</Routes>
