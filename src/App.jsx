@@ -15,7 +15,7 @@ import Team from "./components/Team";
 import Error from "./components/Error";
 import CGU from "./components/CGU";
 import EventCreation from "./components/Event/EventCreation";
-import Mesevents from "./components/MesEvents";
+import Mesevents from "./components/Mesevents";
 import PlaygroundsResult from "./components/PlaygroundsResult";
 import PlaygroundDetails from "./components/PlaygroundDetails";
 
