@@ -1,11 +1,11 @@
 /* eslint-disable indent */
 import React from "react";
 import basketball from "../../assets/basketball.jpg";
-import { func } from "prop-types";
+import { func, string } from "prop-types";
 
 import { useLocation, Link } from "react-router-dom";
 
-const PlaygroundsResult = ({ updateData }) => {
+const PlaygroundsResult = ({ updateData, token }) => {
   const location = useLocation();
 
   const handleUpdateData = (newData) => {
@@ -34,6 +34,13 @@ const PlaygroundsResult = ({ updateData }) => {
                 {item.zipCode} {item.city}
               </p>
               <div className="card-actions justify-end">
+
+              {!token ? (
+
+                <button className="btn btn-secondary py-2 px-4 text-lg" disabled>
+                  Connectez-vous pour en savoir plus
+                </button>
+              ) : (
                 <Link
                   to={{
                     pathname: `/detail-du-terrain/${item.playgroundId}`,
@@ -47,6 +54,7 @@ const PlaygroundsResult = ({ updateData }) => {
                     Plus d&apos;information
                   </button>
                 </Link>
+                )}
               </div>
             </div>
           </div>
@@ -79,4 +87,5 @@ export default PlaygroundsResult;
 
 PlaygroundsResult.propTypes = {
   updateData: func,
+  token: string,
 };

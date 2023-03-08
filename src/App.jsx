@@ -131,7 +131,7 @@ const App = () => {
         />
         <Route
           path="/liste-des-terrains"
-          element={<PlaygroundsResult updateData={updateData} />}
+          element={<PlaygroundsResult updateData={updateData} token={token}/>}
         />
         <Route
           path="/detail-du-terrain/:id"
