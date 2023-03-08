@@ -2,21 +2,21 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import { number, func, bool } from "prop-types";
 import { Link } from "react-router-dom";
 
-const MyProfil = ({ idUser, changeDisabled, isDisabled }) => {
+const MyProfil = () => {
 
 	const [data, setData] = useState({});
-	const [firstname, setFirstname] = useState(data.firstname );
-	const [lastname, setLastname] = useState(data.lastname);
-	const [city, setCity] = useState(data.city);
-	const [username, setUsername] = useState(data.username);
-	const [age, setAge] = useState(data.age);
+	const [firstname, setFirstname] = useState("");
+	const [lastname, setLastname] = useState("");
+	const [city, setCity] = useState("");
+	const [username, setUsername] = useState("");
+	const [age, setAge] = useState();
+	const [isDisabled, setDisabled] = useState(true);
 
 	useEffect(() => {
 		const response = () => {
-			axios.get(`https://oplaygroundapi.herokuapp.com/api/users/${idUser}`, {
+			axios.get("https://oplaygroundapi.herokuapp.com/api/users", {
 				headers: {
 					Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
 				},
@@ -30,7 +30,7 @@ const MyProfil = ({ idUser, changeDisabled, isDisabled }) => {
 					setAge(response.data.age);
 				})
 				.catch((error) => {
-					console.error(error);
+					console.error(error.response.data);
 				});
 		};
 
@@ -40,7 +40,7 @@ const MyProfil = ({ idUser, changeDisabled, isDisabled }) => {
 	const { register, handleSubmit } = useForm();
 	
 	const onUpdate = ({ lastname, firstname, city, password, username, age, sexe }) => {
-		axios.patch(`https://oplaygroundapi.herokuapp.com/api/users/${idUser}`, 
+		axios.patch("https://oplaygroundapi.herokuapp.com/api/users", 
 			{ 
 				lastname, 
 				firstname, 
@@ -55,7 +55,6 @@ const MyProfil = ({ idUser, changeDisabled, isDisabled }) => {
 				},
 			})
 			.then((response) => {
-				console.log("log response", response);
 				setData(response.data);
 				setFirstname(response.data.firstname);
 				setLastname(response.data.lastname);
@@ -65,12 +64,12 @@ const MyProfil = ({ idUser, changeDisabled, isDisabled }) => {
 				changeDisabled();
 			})
 			.catch((error) => {
-				console.error(error);
+				console.error(error.response.data);
 			});
 	};
 
-	const onDelete = (idUser) => {
-		axios.delete(`https://oplaygroundapi.herokuapp.com/api/users/${idUser}`, {
+	const onDelete = () => {
+		axios.delete("https://oplaygroundapi.herokuapp.com/api/users", {
 			headers: {
 				Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
 			},
@@ -86,8 +85,12 @@ const MyProfil = ({ idUser, changeDisabled, isDisabled }) => {
 				window.location.href = "/";
 			})
 			.catch((error) => {
-				console.error(error);
+				console.error(error.response.data);
 			});
+	};
+	
+	const changeDisabled = () => {
+		setDisabled(!isDisabled);
 	};
 
 	return (
@@ -95,7 +98,7 @@ const MyProfil = ({ idUser, changeDisabled, isDisabled }) => {
 			<div className="firstArea mb-2 flex justify-around">
 				<div className="presentationSection py-2 m-4">
 					<h1>Mon Compte</h1>
-					<p className="text-sm">Retrouvez et mettez à jour ici toutes vos informations personnelles.</p>
+					<p className="text-sm">Retrouvez et mettez à jour ici toutes vos informations personnelles</p>
 				</div>
 				<div className="btnArea flex flex-col mt-2 ">
 					<button onClick={changeDisabled} type="button" className="btn btn-sm btn-secondary my-2">Editer mon profil</button>
@@ -108,28 +111,25 @@ const MyProfil = ({ idUser, changeDisabled, isDisabled }) => {
 						<div className="textInuputArea">
 							<div className="fistNameSection pb-1 pt-1 flex">
 								<p className="flex-1 px-4 mt-1">Prénom:</p>
-								<input className="input input-warning w-2/5 max-w-xs " type="text" placeholder={data.firstname}
-									{...register("firstname", { maxLength: 80 })} 
-									disabled={isDisabled} 
-									value={firstname} 
+								<input className="input input-warning w-2/5 max-w-xs " type="text" placeholder={firstname}
+									{...register("firstname", { maxLength: 30 })} 
+									disabled={isDisabled}
 									onChange={(event) => setFirstname(event.target.value)} 
 								/>
 							</div>
 							<div className="lastNameSection pb-1 flex">
 								<p className="flex-1 px-4">Nom :</p>
-								<input className="input input-warning w-2/5 max-w-xs" type="text" placeholder={data.lastname}
-									{...register("lastname", { maxLength: 100 })} 
+								<input className="input input-warning w-2/5 max-w-xs" type="text" placeholder={lastname}
+									{...register("lastname", { maxLength: 30 })} 
 									disabled={isDisabled}
-									value={lastname} 
 									onChange={(event) => setLastname(event.target.value)} 
 								/>
 							</div>
 							<div className="ageSection pb-1 flex">
 								<p className="flex-1 px-4">Age :</p>
-								<input className="input input-warning w-2/5 max-w-xs" type="number" placeholder={data.age}
+								<input className="input input-warning w-2/5 max-w-xs" type="number" placeholder={age}
 									{...register("age", { pattern: /^[0-9]+$/ })} 
-									disabled={isDisabled} 
-									value={age}
+									disabled={isDisabled}
 									onChange={(event) => setAge(event.target.value)}
 								/>
 							</div>
@@ -144,14 +144,14 @@ const MyProfil = ({ idUser, changeDisabled, isDisabled }) => {
 							</div>
 							<div className="cityArea pb-1 flex">
 								<p className="flex-1 px-4">Localisation :</p>
-								<input className="input input-warning w-2/5 max-w-xs" type="text" placeholder={data.city}
+								<input className="input input-warning w-2/5 max-w-xs" type="text" placeholder={city}
 									{...register("city", { minLength: 2 })} 
 									disabled={isDisabled} 
-									value={city}
 									onChange={(event) => setCity(event.target.value)}
 								/>
 							</div>
 						</div>
+						{/* add avatar not fonctionnal */}
 						{/* <div className="imageInputArea">
 							<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBbjlEHBqqh5beLO_wisopY5OqX1j1AcXc6O7Hfmf_T1ndC_vo7uqMXGopWenZ3hCm9vM&usqp=CAU" alt="avatar" />
 							<input type="file" name="avatar"
@@ -163,19 +163,17 @@ const MyProfil = ({ idUser, changeDisabled, isDisabled }) => {
 						<div className="textInuputArea mb-2 ">
 							<div className="pseudoSection pb-1 pt-1 flex">
 								<p className="flex-1 px-4"> Username </p>
-								<input className="input input-warning w-2/5 max-w-xs" type="text" placeholder={data.username}
-									{...register("username", { maxLength: 80 })} 
+								<input className="input input-warning w-2/5 max-w-xs" type="text" placeholder={username}
+									{...register("username", { maxLength: 20 })} 
 									disabled={isDisabled} 
-									value={username}
 									onChange={(event) => setUsername(event.target.value)}
 								/>
 							</div>
 							<div className="pseudoSection pb-1 flex">
 								<p className="flex-1 px-4"> Email </p>
 								<input className="input input-warning w-2/5 max-w-xs" type="email" placeholder={data.email}
-									{...register("email", { maxLength: 80 })} 
+									{...register("email", { maxLength: 40 })} 
 									disabled
-									value={data.email}
 								/>
 							</div>
 							<div className="password pb-1 flex">
@@ -198,13 +196,14 @@ const MyProfil = ({ idUser, changeDisabled, isDisabled }) => {
 												{...register("Confirmation du nouveau mot de passe", { min: 8 })} />
 										</div> 
 										<div className="btnContainer py-2 flex items-center justify-evenly">
-											<input onClick={() => {console.log("state :",lastname, firstname, city, username, age);}} className="btn btn-primary" type="submit" value="Valider" />
+											<input onClick={() => {}} className="btn btn-primary" type="submit" value="Valider" />
 											<Link to="/mon-profil">
-												<button className="btn btn-primary">Annuler</button>
+												<button className="btn btn-primary" onClick={changeDisabled}>Annuler</button>
 											</Link>
 										</div>
 									</>
-									: null
+									: 
+									null
 							}
 							<label htmlFor="my-modal-6" className="btn btn-sm btn-secondary flex bg-red-600">Supprimer mon profil</label>
 							<input type="checkbox" id="my-modal-6" className="modal-toggle" />
@@ -213,7 +212,7 @@ const MyProfil = ({ idUser, changeDisabled, isDisabled }) => {
 									<h3 className="font-bold text-lg">Comment ca ? Vous déclarez forfait ?</h3>
 									<p className="py-4">Vous-etes sur le point de supprimer votre compte, etes-vous certain de le supprimer ?</p>
 									<div className="modal-action">
-										<label onClick={() => onDelete(idUser)} htmlFor="my-modal-6" className="btn btn-sm btn-primary">Oui,je confirme</label>
+										<label onClick={() => onDelete()} htmlFor="my-modal-6" className="btn btn-sm btn-primary">Oui,je confirme</label>
 										<label htmlFor="my-modal-6" className="btn btn-sm btn-secondary">Non, je refuse</label>
 									</div>
 								</div>
@@ -227,9 +226,3 @@ const MyProfil = ({ idUser, changeDisabled, isDisabled }) => {
 };
 
 export default MyProfil;
-
-MyProfil.propTypes = {
-	idUser: number,
-	changeDisabled: func,
-	isDisabled: bool,
-};

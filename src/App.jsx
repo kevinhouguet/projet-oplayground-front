@@ -20,13 +20,8 @@ import PlaygroundsResult from "./components/PlaygroundsResult";
 import PlaygroundDetails from "./components/PlaygroundDetails";
 
 const App = () => {
-  const [checked, setChecked] = useState({ checked: false });
-  const [open, setOpen] = useState(false);
-  const [openbis, setOpenbis] = useState(false);
   const [token, setToken] = useState("");
-  const [username, setUsername] = useState("");
   const [idUser, setIdUser] = useState();
-  const [isDisabled, setDisabled] = useState(true);
   const [data, setData] = useState([]);
   const [events, setEvents] = useState([]);
 
@@ -38,8 +33,7 @@ const App = () => {
     const accessToken = localStorage.getItem("accessToken");
     if (accessToken) {
       setToken(accessToken);
-      const { username, id } = jwt_decode(accessToken);
-      setUsername(username);
+      const { id } = jwt_decode(accessToken);
       setIdUser(id);
     }
   }, []);
@@ -53,26 +47,9 @@ const App = () => {
     }
   }, []);
 
-  const handleChange = (event) => {
-    setChecked({ checked: event.target.checked });
-  };
-
-  const changeDisabled = () => {
-    setDisabled(!isDisabled);
-  };
-
-  const toggle = () => {
-    setOpen(!open);
-  };
-
-  const togglebis = () => {
-    setOpenbis(!openbis);
-  };
-
   const logout = () => {
     localStorage.removeItem("accessToken");
     setToken("");
-    setUsername("");
     setIdUser();
     window.location.replace("/");
     alert("Vous êtes déconnecté, si besoin reconnectez-vous...");
@@ -81,70 +58,46 @@ const App = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <Header
-        username={username}
-        idUser={idUser}
-        isLogin={token}
         onLogout={logout}
       />
       <Routes>
-        <Route path="/" element={<HomePage />} />
+
+        <Route 
+        path="/" 
+        element={<HomePage />} 
+        />
+
         <Route
           path="/inscription"
           element={
-            <Inscription
-              checked={checked}
-              onChange={handleChange}
-              toggle={toggle}
-              togglebis={togglebis}
-              open={open}
-              openbis={openbis}
-            />
+            <Inscription />
           }
         />
-        <Route path={"/qui-sommes-nous"} element={<Team />} />
+
+        <Route
+        path={"/qui-sommes-nous"} 
+        element={<Team />} 
+        />
+
         <Route
           path="/connexion"
-          element={
-            <Login
-              toggle={toggle}
-              open={open}
-              username={username}
-              idUser={idUser}
-              setToken={setToken}
-              setUsername={setUsername}
-              onLogout={logout}
-              token={token}
-              setIdUser={setIdUser}
-            />
-          }
+          element={<Login />}
         />
+
         <Route
           path="/mon-profil"
-          element={
-            <MyProfil
-              idUser={idUser}
-              username={username}
-              changeDisabled={changeDisabled}
-              isDisabled={isDisabled}
-            />
-          }
+          element={<MyProfil />}
         />
+        
         <Route
           path="/liste-des-terrains"
-          element={<PlaygroundsResult updateData={updateData} />}
+          element={
+          <PlaygroundsResult updateData={updateData} />}
         />
         <Route
           path="/detail-du-terrain/:id"
-          element={
-            <PlaygroundDetails
-              data={data}
-              idUser={idUser}
-              setEvents={setEvents}
-              events={events}
-            />
-          }
+          element={<PlaygroundDetails/>}
         />
-        {/* appelle api sur nouvelle route du back id terrain-events*/}
         <Route path="/creation-evenement" element={<EventCreation />} />
         <Route
           path="/liste-des-evenements"

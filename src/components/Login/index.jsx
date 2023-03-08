@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import { bool, func, string, number } from "prop-types";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import jwtDecode from "jwt-decode";
 
 
-const Login = (props) => {
+
+const Login = () => {
+	const [open, setOpen] = useState(false);
+	const [username, setUsername] = useState("");
 	const [isError, setIsError] = useState(false);
 
-	const { open, toggle, setToken, username, setUsername, setIdUser } = props;
+
 
 	const {
 		handleSubmit,
@@ -18,15 +19,31 @@ const Login = (props) => {
 		formState: { errors },
 	} = useForm();
 
+	const toggle = () => {
+		setOpen(!open);
+	};
+
+	const getUsername = () => {
+		axios.get("https://oplaygroundapi.herokuapp.com/api/users", {
+			headers: {
+				Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+			},
+		})
+			.then((response) => {
+				setUsername(response.data.username);
+			})
+			.catch((error) => {
+				console.error(error.response.data);
+			});
+	};
+
 	const onSubmit = (data) => {
 		axios.post("https://oplaygroundapi.herokuapp.com/api/users/signin", data)
 			.then((response) => {
 				axios.defaults.headers.common.Authorization = `Bearer ${response.data.accessToken}`;
 				localStorage.setItem("accessToken", response.data.accessToken);
-				setToken(response.data.accessToken);
 				setIsError(false);
-				setUsername(jwtDecode(response.data.accessToken).username);
-				setIdUser(jwtDecode(response.data.accessToken).id);
+				getUsername();
 			})
 			.catch((error) => {
 				console.error(error);
@@ -66,7 +83,7 @@ const Login = (props) => {
 					<button htmlFor="my-modal" className="btn btn-secondary" type="submit"> Connexion </button>
 
 					<input
-						checked={username ? true : false}
+						checked={localStorage.getItem("accessToken") ? true : false}
 						type="checkbox"
 						id="my-modal"
 						className="modal-toggle"
@@ -109,15 +126,3 @@ const Login = (props) => {
 };
 
 export default Login;
-
-Login.propTypes = {
-	open: bool.isRequired,
-	toggle: func.isRequired,
-	username: string,
-	token: string,
-	setToken: func.isRequired,
-	setUsername: func.isRequired,
-	setIdUser: func.isRequired,
-	isLogin: bool,
-	idUser: number,
-};
