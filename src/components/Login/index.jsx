@@ -64,7 +64,7 @@ const Login = () => {
 
 				<label className="label-text-xl"> Mot de passe* : </label>
 				<div className="relative">
-					<input className="input input-warning w-full max-w-xs" type={(open === false)? "password" : "text"} 
+					<input className="input input-warning w-full max-w-xs" type={(open === false) ? "password" : "text"} 
 						{...register("password", {required : true, minLength : 8})}  />
 					<div className="text-2xl absolute bottom-[12px] right-[5px]">
 						{
