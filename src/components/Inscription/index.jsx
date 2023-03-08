@@ -54,42 +54,42 @@ const Inscription = (props) => {
 				{errors.username && <p className="text-red-600 text-sm"> Username non renseigné </p>}
 
 				<label className="label-text-xl"> Mot de passe* : </label>
-				<input className="input input-warning w-full max-w-xs" type={(open === false)? "password" : "text"} 
-					{...register("password", {required : true, minLength : 8})}  />
+				<div className="relative">
+					<input className="input input-warning w-full max-w-xs" type={(openbis === false)? "password" : "text"} 
+						{...register("password", {required : true, minLength : 8})}  />
+					<div className="text-2xl absolute bottom-[12px] right-[5px]">
+						{
+							(false === openbis) ? <AiFillEyeInvisible onClick={togglebis}/> : <AiFillEye onClick={togglebis} />
+						}
+					</div>
+				</div>
 				{errors.password && <p className="text-red-600 text-sm"> Mot de passe obligatoire et doit être supérieur à 8 caractères</p>}
+
 
 
 				<label className="label-text-xl"> Confirmation mot de passe* : </label>
 				<div className="relative">
-					<input className="input input-warning w-full max-w-xs" type={(openbis === false)? "password" : "text"}
+					<input className="input input-warning w-full max-w-xs" type={(open === false)? "password" : "text"}
 						{...register("passwordconfirm", {required : true, validate : value => value === pwd})} />
-					{errors.passwordconfirm && <p className="text-red-600 text-sm"> Le mot de passe est différent et doit être supérieur à 8 caractères </p>}
-				
-					<p className="text-sm">*Champs obligatoires</p>
-
-					<div className="text-2xl absolute bottom-[200px] right-3">
+					<div className="text-2xl absolute bottom-[12px] right-[5px]">
 						{
-							(open === false) ? <AiFillEyeInvisible onClick={toggle}/> : <AiFillEye onClick={toggle} />
+							(false === open) ? <AiFillEyeInvisible onClick={toggle}/> : <AiFillEye onClick={toggle} />
 						}
 					</div>
-
-					<div className="text-2xl absolute bottom-[120px] right-3">
-						{
-							(openbis === false) ? <AiFillEyeInvisible onClick={togglebis}/> : <AiFillEye onClick={togglebis} />
-						}
-					</div>
+				</div>
+				{errors.passwordconfirm && <p className="text-red-600 text-sm"> Le mot de passe est différent et doit être supérieur à 8 caractères </p>}
 
 
-					<div className="flex justify-center">
-						<button className="btn btn-primary my-7 " type="submit"> Inscription </button>
-					</div>
+				<p className="text-sm">*Champs obligatoires</p>
+
+				<div className="flex justify-center">
+					<button className="btn btn-primary my-7 " type="submit"> Inscription </button>
+				</div>
 					
-					<div className="underline pb-3">
-						<Link to="/connexion">
+				<div className="underline pb-3">
+					<Link to="/connexion">
 							Tu as déjà un compte ? Clique ici
-						</Link>
-					</div>
-
+					</Link>
 				</div>
 			</form>
 
