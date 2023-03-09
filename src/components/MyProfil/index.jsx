@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
 const MyProfil = () => {
 
@@ -13,6 +14,8 @@ const MyProfil = () => {
 	const [username, setUsername] = useState("");
 	const [age, setAge] = useState();
 	const [isDisabled, setDisabled] = useState(true);
+	const [open, setOpen] = useState(false);
+	const [openBis, setOpenBis] = useState(false);
 
 	useEffect(() => {
 		const response = () => {
@@ -30,7 +33,7 @@ const MyProfil = () => {
 					setAge(response.data.age);
 				})
 				.catch((error) => {
-					console.error(error.response.data);
+					console.error(error);
 				});
 		};
 
@@ -64,7 +67,7 @@ const MyProfil = () => {
 				changeDisabled();
 			})
 			.catch((error) => {
-				console.error(error.response.data);
+				console.error(error);
 			});
 	};
 
@@ -85,12 +88,20 @@ const MyProfil = () => {
 				window.location.href = "/";
 			})
 			.catch((error) => {
-				console.error(error.response.data);
+				console.error(error);
 			});
 	};
 	
 	const changeDisabled = () => {
 		setDisabled(!isDisabled);
+	};
+
+	const toggle = () => {
+		setOpen(!open);
+	};
+
+	const toggleBis = () => {
+		setOpenBis(!openBis);
 	};
 
 	return (
@@ -185,16 +196,30 @@ const MyProfil = () => {
 								!isDisabled
 									?
 									<>
-										<div className="newPassword pb-1 flex">
-											<p className="flex-1 px-4">Nouveau mot de passe :</p>
-											<input className="input input-warning w-2/5 max-w-xs" type="password" placeholder="Nouveau mot de passe"
-												{...register("password", { minLength: 8 })} />
+										<div className="relative">
+											<div className="newPassword pb-1 flex">
+												<p className="flex-1 px-4">Nouveau mot de passe :</p>
+												<input className="input input-warning w-2/5 max-w-xs" type={(open === false) ? "password" : "text"} placeholder="Nouveau mot de passe"
+													{...register("password", { minLength: 8 })} />
+												<div className="text-2xl absolute bottom-[12px] right-[5px]">
+													{
+														(false === open) ? <AiFillEyeInvisible onClick={toggle}/> : <AiFillEye onClick={toggle} />
+													}
+												</div>
+											</div>
 										</div>
-										<div className="newPasswordConfirmation pb-1 flex">
-											<p className="flex-1 px-4">Confirmation du nouveau mot de passe :</p>
-											<input className="input input-warning w-2/5 max-w-xs" type="password" placeholder="Confirmation du mot de passe"
-												{...register("Confirmation du nouveau mot de passe", { min: 8 })} />
-										</div> 
+										<div className="relative">
+											<div className="newPasswordConfirmation pb-1 flex">
+												<p className="flex-1 px-4">Confirmation du nouveau mot de passe :</p>
+												<input className="input input-warning w-2/5 max-w-xs" type={(openBis === false) ? "password" : "text"} placeholder="Confirmation du mot de passe"
+													{...register("Confirmation du nouveau mot de passe", { min: 8 })} />
+												<div className="text-2xl absolute bottom-[12px] right-[5px]">
+													{
+														(false === openBis) ? <AiFillEyeInvisible onClick={toggleBis}/> : <AiFillEye onClick={toggleBis} />
+													}
+												</div>
+											</div> 
+										</div>
 										<div className="btnContainer py-2 flex items-center justify-evenly">
 											<input onClick={() => {}} className="btn btn-primary" type="submit" value="Valider" />
 											<Link to="/mon-profil">
