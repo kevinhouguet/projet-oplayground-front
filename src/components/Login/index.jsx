@@ -33,7 +33,7 @@ const Login = () => {
 				setUsername(response.data.username);
 			})
 			.catch((error) => {
-				console.error(error.response.data);
+				console.error(error);
 			});
 	};
 
