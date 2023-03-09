@@ -45,11 +45,11 @@ const PlaygroundDetails = () => {
 							Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
 						},
 					}
-				); console.log(response.data);
+				);
 				setPlaygroundData(response.data);
 				setIsLoading(false);
 			} catch (error) {
-				console.error(error.response.data);
+				console.error(error);
 			}
 		})();
 	}, [playgroundId]);
@@ -73,7 +73,6 @@ const PlaygroundDetails = () => {
 				}
 			)
 			.then((response) => {
-				console.log(response.data);
 				const updatedEvents = [...playgroundData.events];
 				response.data.author_email = response.data.email;
 				delete response.data.email;
@@ -86,7 +85,7 @@ const PlaygroundDetails = () => {
 				closeModale4();
 			})
 			.catch((error) => {
-				console.error(error.response.data);
+				console.error(error);
 			});
 	};
 

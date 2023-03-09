@@ -1,14 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import basketball from "../../assets/basketball.jpg";
 import { func } from "prop-types";
-
 import { useLocation, Link } from "react-router-dom";
 
-const PlaygroundsResult = ({ updateData }) => {
+const PlaygroundsResult = () => {
 	const location = useLocation();
+
+	const [data, setData] = useState([]);
 
 	const handleUpdateData = (newData) => {
 		updateData(newData);
+	};
+
+	const updateData = (newData) => {
+		setData(newData);
 	};
 
 	return (
@@ -39,7 +44,7 @@ const PlaygroundsResult = ({ updateData }) => {
 										?
 										(
 											<button className="btn btn-secondary py-2 px-4 text-lg" disabled>
-                  Connectez-vous pour en savoir plus
+												Connectez-vous pour en savoir plus
 											</button>
 										) 
 										:
@@ -54,7 +59,7 @@ const PlaygroundsResult = ({ updateData }) => {
 													onClick={() => handleUpdateData(item)}
 													className="btn btn-primary py-2 px-4 text-lg"
 												>
-                    Plus d&apos;information
+													Plus d&apos;information
 												</button>
 											</Link>
 										)
@@ -66,7 +71,7 @@ const PlaygroundsResult = ({ updateData }) => {
 			) : (
 				<div className="m-auto">
 					<div className="flex flex-col text-3xl font-bold text-center">
-          Désolé, il n&apos;y a pas de terrain dans ta ville.
+						Désolé, il n&apos;y a pas de terrain dans ta ville.
 
 						<a href="mailto:contact@playground.com" className="text-blue-500 hover:text-blue-700 text-2xl mt-8"> Tu peux nous contacter pour en rajouter un ! </a>
 
@@ -81,10 +86,6 @@ const PlaygroundsResult = ({ updateData }) => {
 			)}
 		</div>
 	);
-};
-
-PlaygroundsResult.propTypes = {
-	updateData: func,
 };
 
 export default PlaygroundsResult;

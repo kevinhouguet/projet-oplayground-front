@@ -33,7 +33,7 @@ const MyProfil = () => {
 					setAge(response.data.age);
 				})
 				.catch((error) => {
-					console.error(error.response.data);
+					console.error(error);
 				});
 		};
 
@@ -67,7 +67,7 @@ const MyProfil = () => {
 				changeDisabled();
 			})
 			.catch((error) => {
-				console.error(error.response.data);
+				console.error(error);
 			});
 	};
 
@@ -88,7 +88,7 @@ const MyProfil = () => {
 				window.location.href = "/";
 			})
 			.catch((error) => {
-				console.error(error.response.data);
+				console.error(error);
 			});
 	};
 	
