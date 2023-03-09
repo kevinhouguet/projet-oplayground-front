@@ -1,14 +1,31 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { string } from "prop-types";
+import axios from "axios";
 
-const BurgerMenu = (props) => {
-	const { username, isLogin } = props;
-
+const BurgerMenu = () => {
+	const [username, setUsername] = useState("");
 	const [isOpen, setIsOpen] = useState(false);
 
+	useEffect(() => {
+		const response = () => {
+			axios.get("https://oplaygroundapi.herokuapp.com/api/users", {
+				headers: {
+					Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+				},
+			})
+				.then((response) => {
+					setUsername(response.data.username);
+				})
+				.catch((error) => {
+					console.error(error);
+				});
+		};
+
+		response();
+	}, []);
+
 	const handleClick = () => {
-		setIsOpen(false);
+		setIsOpen(!isOpen);
 	};
 
 	return (
@@ -16,12 +33,12 @@ const BurgerMenu = (props) => {
 			<label
 				tabIndex={0}
 				className="btn btn-ghost rounded-btn"
-				onClick={() => setIsOpen(!isOpen)}
+				onClick={handleClick}
 			>
 				{
-					isLogin
+					localStorage.getItem("accessToken")
 						?
-						<span>Bonjour {username} &#127936;</span> 
+						<span>Bonjour {username} {/*&#127936;*/}</span>  
 						:
 						"Menu"
 				}
@@ -37,7 +54,9 @@ const BurgerMenu = (props) => {
 					</Link>
 				</li>
 				<li>
-					<a onClick={handleClick}>Mes événements</a>
+					<Link to="/liste-des-evenements" onClick={handleClick}>
+				Mes événements
+					</Link>
 				</li>
 			</ul>
 		</div>
@@ -45,8 +64,3 @@ const BurgerMenu = (props) => {
 };
 
 export default BurgerMenu;
-
-BurgerMenu.propTypes = {
-	username: string.isRequired,
-	isLogin: string.isRequired,
-};

@@ -1,60 +1,82 @@
-import React, { useState } from "react";
+import React from "react";
+import { func, string } from "prop-types";
+import { useForm } from "react-hook-form";
 
 //recupérer en props la ville auquel est associé l'événement
-const EventCreation = () => {
-	const [eventName, setEventName] = useState("");
-	const [eventDate, setEventDate] = useState("");
-	const [eventTime, setEventTime] = useState("");
+const EventCreation = ({ createEvent, setEventName, setEventDate, setEventTime, setMaxPlayer, eventName, eventDate, eventTime, maxPlayer }) => {
 
-	const handleEventNameChange = (event) => {
-		setEventName(event.target.value);
-	};
-
-	const handleEventDateChange = (event) => {
-		setEventDate(event.target.value);
-	};
-
-	const handleEventTimeChange = (event) => {
-		setEventTime(event.target.value);
-	};
-
-	const handleSubmit = (event) => {
-		event.preventDefault();
-
-		const timestamp = Date.parse(`${eventDate} ${eventTime}`);
-		// Envoyer les informations pour créer l'événement
-		console.log("Nom de l'événement :", eventName);
-		console.log("timestamp:", timestamp);
-	};
-
-	const handleCancel = () => {
-		// Annuler la création de l'événement
-		console.log("Création de l'événement annulée");
-	};
+	const { handleSubmit, register } = useForm();
 
 	return (
-		<form onSubmit={handleSubmit}>
+		<form onSubmit={handleSubmit(createEvent)}>
 			<div className="nameSection pb-3 flex justify-center">
 				<label>
 					<h1 className="flex justify-center">Nom de l&apos;événement :</h1>
-					<input className="input input-warning w-auto max-w-xs " type="text" value={eventName} onChange={handleEventNameChange} />
+					<input
+						className="input input-warning w-auto max-w-xs "
+						type="text"
+						placeholder={eventName}
+						{...register("nameEvent", { required: true })}
+						onChange={(e) => setEventName(e.target.value)}
+					/>
 				</label>
 			</div>
-			<div className="dateAndTimeSection flex justify-center">
+			<div className="dateAndTimeSection flex items-center flex-col">
 				<label>
-              Date de l&apos;événement :
-					<input className="rounded-md" type="date" value={eventDate} onChange={handleEventDateChange} />
+          Date de l&apos;événement :
+					<input
+						className="rounded-md"
+						type="date"
+						placeholder={eventDate}
+						{...register("date", { required: true })}
+						onChange={(e) => setEventDate(e.target.value)}
+					/>
 				</label>
 				<label>
-              Heure de l&apos;événement :
-					<input className="rounded-md" type="time" value={eventTime} onChange={handleEventTimeChange} />
+          Heure de l&apos;événement :
+					<input
+						className="rounded-md"
+						type="time"
+						placeholder={eventTime}
+						{...register("time", { required: true })}
+						onChange={(e) => setEventTime(e.target.value)}
+					/>
+				</label>
+				<label>
+          Nombre de joueurs max :
+					<input
+						name="max"
+						className="rounded-md"
+						type="number"
+						placeholder={maxPlayer}
+						min="1"
+						max="22"
+						{...register("maxPlayer", { required: true })}
+						onChange={(e) => setMaxPlayer(e.target.value)}
+					/>
 				</label>
 			</div>
-			<div className="buttonSection py-4 flex justify-evenly">
-				<button className="btn btn-primary" type="submit">Valider</button>
+			<div className="flex justify-center gap-10">
+				<div className="buttonSection py-4 flex justify-evenly">
+					<button className="btn btn-primary" type="submit">
+            Valider
+					</button>
+				</div>
 			</div>
 		</form>
 	);
 };
 
 export default EventCreation;
+
+EventCreation.propTypes = {
+	createEvent: func,
+	setEventName: func,
+	setEventDate: func,
+	setEventTime: func,
+	setMaxPlayer: func,
+	eventName: string,
+	eventDate: string,
+	eventTime: string,
+	maxPlayer: string,
+};

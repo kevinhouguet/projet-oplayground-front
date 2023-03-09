@@ -2,13 +2,11 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-
-
 function AutocompleteInput() {
 
 	const [searchTerm, setSearchTerm] = useState("");
 	const [suggestions, setSuggestions] = useState([]);
-	const [selectedCodePostal, setSelectedCodePostal] = useState("");
+	const [selectedSuggestion, setSelectedSuggestion] = useState(null);
 	const navigate = useNavigate();
 
 	useEffect(() => {
@@ -20,7 +18,7 @@ function AutocompleteInput() {
 					setSuggestions(response.data);
 				})
 				.catch((error) => {
-					console.error(error);
+					console.log(error);
 				});
 		} else {
 			setSuggestions([]);
@@ -29,17 +27,18 @@ function AutocompleteInput() {
 
 	const handleInputChange = (event) => {
 		setSearchTerm(event.target.value);
-		setSelectedCodePostal("");
+		setSelectedSuggestion(null);
 	};
 
 	const handleSuggestionClick = (suggestion) => {
+		setSelectedSuggestion(suggestion);
 		setSearchTerm(suggestion.nom);
-		setSelectedCodePostal(suggestion.codesPostaux[0]);
 		setSuggestions([]);
 	};
 
 	function handleSubmit(event) {
 		event.preventDefault();
+		const selectedCodePostal = selectedSuggestion ? selectedSuggestion.codesPostaux[0] : "";
 		axios.get(`https://oplaygroundapi.herokuapp.com/api/terrains?commune="${searchTerm}"&codepostal=${selectedCodePostal}`)
 			.then((response) => {
 				const objectData = response.data;
@@ -52,20 +51,28 @@ function AutocompleteInput() {
 
 	return (
 		<form onSubmit={handleSubmit} className="">
-			<input className="input input-bordered input-secondary mr-2" placeholder="Entrez une ville..." type="text" value={searchTerm} onChange={handleInputChange} />
+			<input
+				className="input input-bordered input-secondary mr-2"
+				placeholder="Entrez une ville..."
+				type="text"
+				value={selectedSuggestion ? `${selectedSuggestion.nom} - ${selectedSuggestion.codesPostaux[0]}` : searchTerm}
+
+				onChange={handleInputChange}/>
+
 			<button className="btn btn-primary " type="submit"> Rechercher </button>
 
-			{suggestions.length > 0 && (
+			{suggestions.length > 0 && selectedSuggestion === null && (
 				<ul className="absolute z-10 mt-2 w-60 bg-white rounded-md shadow-lg">
 					{suggestions.map((suggestion) => (
-						<li className="px-4 py-2 hover:bg-gray-100 cursor-pointer" key={suggestion.code} onClick={() => handleSuggestionClick(suggestion)}>
+						<li
+							className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+							key={suggestion.code}
+							onClick={() => handleSuggestionClick(suggestion)}
+						>
 							{suggestion.nom} - {suggestion.codesPostaux[0]}
-              
 						</li>
 					))}
-          
 				</ul>
-
 			)}
 		</form>
 	);
