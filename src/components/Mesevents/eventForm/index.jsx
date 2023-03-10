@@ -61,7 +61,7 @@ const EventForm = ({userEvent}) => {
 
 	return (
 		<div
-			className="card lg:card-side bg-base-100 shadow-xl w-9/12 m-10 text-center "
+			className="card lg:card-side bg-base-100 shadow-xl w-30 m-10 text-center "
 			key={userEvent.id}
 		>
 			<form onSubmit={handleSubmit(onUpdate)} >
@@ -84,9 +84,9 @@ const EventForm = ({userEvent}) => {
 						</button>
 					</Link>
 				</div>
-				<div className="card-body">
+				<div className="card-body flex flex-col items-center ">
 					<h2 className="card-title text-2xl font-bold">Nom de l&apos;événement :</h2>
-					<input className="input input-warning w-2/5 max-w-xs " type="text" 
+					<input className="input input-warning w-full text-xl" type="text" 
 						placeholder={userEvent.name} 
 						defaultValue={userEvent.name}
 						{...register("name", { maxLength: 30 })} 
@@ -96,7 +96,7 @@ const EventForm = ({userEvent}) => {
 					<p className="text-2xl font-bold">Débute à :</p>
 
 					<input
-						className="input input-warning w-full max-w-md "
+						className="input input-warning w-full max-w-md text-xl"
 						type="date"
 						placeholder={userEvent.startDate} 
 						defaultValue={userEvent.startDate}
@@ -106,7 +106,7 @@ const EventForm = ({userEvent}) => {
 					/>
 
 					<input
-						className="input input-warning w-full max-w-md "
+						className="input input-warning w-full max-w-md text-xl"
 						type="time"
 						defaultValue={userEvent.startHour}
 						{...register("time")}
@@ -115,7 +115,7 @@ const EventForm = ({userEvent}) => {
 					/>
 
 					<p className="text-2xl font-bold">Fini à :</p>
-					<p className="text-xl font-bold">{userEvent.stop_date}</p>
+					<p className="text-xl text-left bg-gray-200 w-full rounded-lg h-12 pt-2 pl-2">{userEvent.stop_date}</p>
 
                 
 
@@ -124,7 +124,7 @@ const EventForm = ({userEvent}) => {
 					</p>
 
 					<input
-						className="input input-warning w-full max-w-md "
+						className="input input-warning w-full max-w-md text-xl"
 						type="number"
 						defaultValue={userEvent.max_player}
 						{...register("max_player")}
@@ -147,14 +147,14 @@ const EventForm = ({userEvent}) => {
 						</Link>
 					</div>
 				) : null}
-				<label htmlFor="my-modal-6" className="btn btn-sm btn-secondary flex bg-red-600">Supprimer l&apos;évènement</label>
-				<input type="checkbox" id="my-modal-6" className="modal-toggle" />
+				<label htmlFor="my-modal-6" className="btn btn-sm btn-secondary flex-col bg-primary w-2/3 mb-8 h-10">Supprimer l&apos;évènement</label>
+				<input type="checkbox" id="my-modal-6" className="modal-toggle " />
 				<div className="modal modal-bottom sm:modal-middle">
 					<div className="modal-box">
 						<h3 className="font-bold text-lg">Vous déclarez forfait ?</h3>
-						<p className="py-4">Vous-êtes sur le point de supprimer votre évènement, êtes-vous certain de vouloir le supprimer ?</p>
-						<div className="modal-action">
-							<label onClick={() => onDelete()} htmlFor="my-modal-6" className="btn btn-sm btn-primary">Oui,je confirme</label>
+						<p className="py-2">Vous-êtes sur le point de supprimer votre évènement, êtes-vous certain de vouloir le supprimer ?</p>
+						<div className="modal-action flex justify-center  ">
+							<label onClick={() => onDelete()} htmlFor="my-modal-6" className="btn btn-sm btn-primary">Oui, je confirme</label>
 							<label htmlFor="my-modal-6" className="btn btn-sm btn-secondary">Non, je refuse</label>
 						</div>
 					</div>

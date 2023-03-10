@@ -22,11 +22,11 @@ const PlaygroundsResult = () => {
 				location.state.map((item) => (
 					<div
 						key={item.playgroundId}
-						className="card lg:card-side bg-base-100 shadow-xl w-9/12 m-10"
+						className="card lg:card-side bg-base-100 shadow-xl w-9/12 m-10 flex-row sm:flex-col"
 					>
 						<img
 							src={basketball}
-							className="rounded-2xl w-1/3 h-110"
+							className="rounded-2xl w-1/3 sm:w-full"
 							alt="Album"
 						/>
 						<div className="card-body">
@@ -43,7 +43,7 @@ const PlaygroundsResult = () => {
 									!localStorage.getItem("accessToken")
 										?
 										(
-											<button className="btn btn-secondary py-2 px-4 text-lg" disabled>
+											<button className="btn btn-secondary py-2 px-4 text-lg sm:w-full h-full" disabled>
 												Connectez-vous pour en savoir plus
 											</button>
 										) 
@@ -57,7 +57,7 @@ const PlaygroundsResult = () => {
 											>
 												<button
 													onClick={() => handleUpdateData(item)}
-													className="btn btn-primary py-2 px-4 text-lg"
+													className="btn btn-primary py-2 px-4 text-lg sm: h-20"
 												>
 													Plus d&apos;information
 												</button>

@@ -112,7 +112,7 @@ const MyProfil = () => {
 					<p className="text-sm">Retrouvez et mettez à jour ici toutes vos informations personnelles</p>
 				</div>
 				<div className="btnArea flex flex-col mt-2 ">
-					<button onClick={changeDisabled} type="button" className="btn btn-sm btn-secondary my-2">Editer mon profil</button>
+					<button onClick={changeDisabled} type="button" className="btn btn-sm btn-secondary my-2 sm:h-14 sm:mr-3">Editer mon profil</button>
 				</div>
 			</div>
 			<div className="titleArea bg-yellow-300 py-1 px-4 mx-4">Mon Profil</div>
@@ -199,7 +199,7 @@ const MyProfil = () => {
 										<div className="relative">
 											<div className="newPassword pb-1 flex">
 												<p className="flex-1 px-4">Nouveau mot de passe :</p>
-												<input className="input input-warning w-2/5 max-w-xs" type={(open === false) ? "password" : "text"} placeholder="Nouveau mot de passe"
+												<input className="input input-warning w-2/5 max-w-xs sm:text" type={(open === false) ? "password" : "text"} placeholder="Nouveau mot de passe"
 													{...register("password", { minLength: 8 })} />
 												<div className="text-2xl absolute bottom-[12px] right-[5px]">
 													{
