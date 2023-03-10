@@ -4,8 +4,8 @@ import AutocompleteInput from "../../components/HomePage/AutocompleteInput";
 import { Link } from "react-router-dom";
 
 const HomePage = () => (
-  <div className="bg-cover bg-center flex-1 flex h-screen bg-[url('./assets/basketball.jpg')]">
-    <div className="h-full grid gap-10 m-auto">
+  <div className="bg-cover bg-center flex-1 flex h-screen bg-[url('./assets/basketball.jpg')] sm:justify-center pl-6">
+    <div className="h-full grid gap-10 m-auto ">
       {!localStorage.getItem("accessToken") && (
         <div className="flex gap-8">
           <Link to={"/connexion"}>
