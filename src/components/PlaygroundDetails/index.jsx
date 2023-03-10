@@ -107,7 +107,7 @@ const PlaygroundDetails = () => {
               alt="Album"
             />
           </div>
-          <h2 className="text-3xl pb-1">
+          <h2 className="text-3xl pb-1 sm:font-bold">
             Adresse
             <span className="inline-block">
               <FaMapMarkerAlt />
@@ -117,7 +117,7 @@ const PlaygroundDetails = () => {
           <p className="text-2xl pb-10">
             {playgroundData.zipCode} {playgroundData.city}
           </p>
-          <h2 className="text-3xl pb-1">
+          <h2 className="text-3xl pb-1 sm:font-bold">
             Infos supplémentaires
             <span className="inline-block">
               <FaInfo />
