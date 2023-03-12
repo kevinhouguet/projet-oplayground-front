@@ -26,8 +26,8 @@ const Mesevents = () => {
 	}, []);
 
 	return (
-		<div className="h-screen bg-cover bg-center bg-[url('./assets/white-painted-wall-texture-background.jpg')]">
-			<div className="flex flex-wrap justify-center h-screen overflow-y-auto mb-5">
+		<div className=" bg-cover bg-center bg-[url('./assets/white-painted-wall-texture-background.jpg')]">
+			<div className="flex flex-wrap justify-center mb-5">
 				{userEvents.map((userEvent) => <EventForm key={userEvent.id} userEvent={userEvent} />)}
 			</div>
 		</div>

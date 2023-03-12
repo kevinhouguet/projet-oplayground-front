@@ -14,9 +14,9 @@ const Header = ({ onLogout }) => {
 	const subLogPage = location.pathname === "/connexion" || location.pathname === "/inscription";
 
 	return (
-		<header className="navbar bg-primary text-primary-content p-5 flex justify-between">
+		<header className="navbar bg-primary text-primary-content p-5 flex justify-between sm:justify-center">
 			<Link to="/">
-				<img src={logoOP} className="btn btn-ghost normal-case text-xl pointer-events-none" alt="Logo oplayground" />
+				<img src={logoOP} className="btn btn-ghost normal-case text-xl pointer-events-none sm: w-full" alt="Logo oplayground" />
 			</Link>
 			<div className="flex-1 flex justify-end">
 				{/* comportement des elements du header si l'user n'est pas connecté et sur les routes accueil, subscription ou connexion*/}
@@ -29,12 +29,12 @@ const Header = ({ onLogout }) => {
 					(
 						<>
 							<Link to={"/inscription"}>
-								<button className="btn btn-secondary py-4 px-8 mx-2 flex items-center ">
+								<button className="btn btn-secondary py-4 px-8 mx-2 flex items-center">
 								Inscription
 								</button>
 							</Link>
 							<Link to={"/connexion"}>
-								<button className="btn btn-secondary py-4 px-8 flex items-center ">
+								<button className="btn btn-secondary py-4 px-8 flex items-center mr-2">
 								Connexion
 								</button>
 							</Link>
@@ -43,7 +43,7 @@ const Header = ({ onLogout }) => {
 				{
 					localStorage.getItem("accessToken")
 					&& (
-						<div className="flex items-center gap-6">
+						<div className="flex items-center gap-6 sm:flex-col">
 							<BurgerMenu />
 							<QuitBtn onLogout={onLogout} />
 						</div>

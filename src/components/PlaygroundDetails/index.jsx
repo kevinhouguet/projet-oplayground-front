@@ -88,18 +88,25 @@ const PlaygroundDetails = () => {
 				console.error(error);
 			});
 	};
-	
+
 	return (
 		<div className="flex flex-col items-center justify-center min-h-screen bg-cover bg-center bg-[url('./assets/white-painted-wall-texture-background.jpg')]">
 			{!isLoading && (
-				<div className="card w-9/12 glass shadow-2xl p-10">
+				<div className="card w-1/2 glass shadow-2xl p-10 sm:w-full">
 					<h1 className="text-center text-4xl pb-16">{playgroundData.name}</h1>
 					<div className="flex justify-evenly pb-10">
-						<img src={basketball} className="rounded-2xl w-1/6" alt="Album" />
-						<img src={basketball} className="rounded-2xl w-1/6" alt="Album" />
-						<img src={basketball} className="rounded-2xl w-1/6" alt="Album" />
+						<img
+							src={basketball}
+							className="rounded-2xl w-1/3 p-1"
+							alt="Album"
+						/>
+						<img
+							src={basketball}
+							className="rounded-2xl w-1/3 p-1"
+							alt="Album"
+						/>
 					</div>
-					<h2 className="text-3xl pb-1">
+					<h2 className="text-3xl pb-1 sm:font-bold">
 						Adresse
 						<span className="inline-block">
 							<FaMapMarkerAlt />
@@ -109,10 +116,9 @@ const PlaygroundDetails = () => {
 					<p className="text-2xl pb-10">
 						{playgroundData.zipCode} {playgroundData.city}
 					</p>
-					<h2 className="text-3xl pb-1">
+					<h2 className="text-3xl pb-1 sm:font-bold">
 						Infos supplémentaires
 						<span className="inline-block">
-
 							<FaInfo />
 						</span>
 					</h2>
@@ -125,43 +131,67 @@ const PlaygroundDetails = () => {
 					{
 						playgroundData.events[0] 
 						&& 
-			(
-				<div className="flex flex-col h-80 overflow-y-auto gap-1 mb-6">
-					{playgroundData.events.map(function (event) {
-						return (
-							<div key={event.id}>
-								<label
-									htmlFor={`my-modal-3_${event.id}`}
-									className="btn h-20 text-xl"
-								>
-									Le {new Date((event.start_date)).toLocaleString("fr-FR", { timeZone: "Europe/Paris", day:"numeric", month:"long", year:"numeric", hour: "numeric", minute: "numeric"})} au {new Date((event.stop_date)).toLocaleString("fr-FR", { timeZone: "Europe/Paris", day:"numeric", month:"long", year:"numeric", hour: "numeric", minute: "numeric"})} - {event.name}
-								</label>
-								<input
-									type="checkbox"
-									id={`my-modal-3_${event.id}`}
-									className="modal-toggle"
-								/>
-								<div className="modal">
-									<div className="modal-box relative">
-										<label
-											htmlFor={`my-modal-3_${event.id}`}
-											className="btn btn-sm btn-circle absolute right-2 top-2"
-										>
-											✕
-										</label>
-										<h3 className="text-lg font-bold">
-											Contact l&apos;organisateur pour réserver ta place !
-										</h3>
-										<p className="py-4 text-2xl">{event.author_email}</p>
-									</div>
-								</div>
+						(
+							<div className="flex flex-col h-auto overflow-y-auto gap-1 mb-2">
+								{playgroundData.events.map(function (event) {
+									return (
+										<div key={event.id} className="flex justify-center">
+											<label
+												htmlFor={`my-modal-3_${event.id}`}
+												className="btn bg-orange-800 text-primary py-1 h-auto text-xl"
+											>
+											Du{" "}
+												{new Date(event.start_date).toLocaleString("fr-FR", {
+													timeZone: "Europe/Paris",
+													day: "numeric",
+													month: "long",
+													year: "numeric",
+													hour: "numeric",
+													minute: "numeric",
+												})}{" "}
+											au{" "}
+												{new Date(event.stop_date).toLocaleString("fr-FR", {
+													timeZone: "Europe/Paris",
+													day: "numeric",
+													month: "long",
+													year: "numeric",
+													hour: "numeric",
+													minute: "numeric",
+												})}{" "}
+											- {event.name}{" "}
+											</label>
+											<input
+												type="checkbox"
+												id={`my-modal-3_${event.id}`}
+												className="modal-toggle"
+											/>
+											<div className="modal">
+												<div className="modal-box relative">
+													<label
+														htmlFor={`my-modal-3_${event.id}`}
+														className="btn btn-sm btn-circle absolute right-2 top-2"
+													>
+													✕
+													</label>
+													<h3 className="text-lg font-bold">
+													Contact l&apos;organisateur pour réserver ta place !
+													</h3>
+													<p className="py-4 text-2xl text-center">
+														{event.author_email}
+													</p>
+												</div>
+											</div>
+										</div>
+									);
+								})}
 							</div>
-						);
-					})}
-				</div>
-			)}
-					<label htmlFor="my-modal-4" className="btn btn-primary" onClick={clearForm}>
-						Créer un nouvel évènement
+						)}
+					<label
+						htmlFor="my-modal-4"
+						className="btn btn-primary"
+						onClick={clearForm}
+					>
+						Créer un nouvel évenement
 					</label>
 					<input
 						type="checkbox"
@@ -177,9 +207,9 @@ const PlaygroundDetails = () => {
 							>
 								✕
 							</label>
-							<EventCreation 
-								createEvent={createEvent} 
-								eventName={eventName} 
+							<EventCreation
+								createEvent={createEvent}
+								eventName={eventName}
 								eventDate={eventDate}
 								eventTime={eventTime}
 								maxPlayer={maxPlayer}

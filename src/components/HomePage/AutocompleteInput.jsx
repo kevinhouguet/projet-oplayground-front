@@ -52,14 +52,14 @@ function AutocompleteInput() {
 	return (
 		<form onSubmit={handleSubmit} className="">
 			<input
-				className="input input-bordered input-secondary mr-2"
+				className="input input-bordered input-secondary mr-2 sm:w-1/2"
 				placeholder="Entrez une ville..."
 				type="text"
 				value={selectedSuggestion ? `${selectedSuggestion.nom} - ${selectedSuggestion.codesPostaux[0]}` : searchTerm}
 
 				onChange={handleInputChange}/>
 
-			<button className="btn btn-primary " type="submit"> Rechercher </button>
+			<button className="btn btn-primary sm:mt-2 " type="submit"> Rechercher </button>
 
 			{suggestions.length > 0 && selectedSuggestion === null && (
 				<ul className="absolute z-10 mt-2 w-60 bg-white rounded-md shadow-lg">
