@@ -81,14 +81,14 @@ const PlaygroundDetails = () => {
 					...playgroundData,
 					events: updatedEvents,
 				});
-
 				closeModale4();
+				location.reload();
 			})
 			.catch((error) => {
 				console.error(error);
 			});
 	};
-
+	
 	return (
 		<div className="flex flex-col items-center justify-center min-h-screen bg-cover bg-center bg-[url('./assets/white-painted-wall-texture-background.jpg')]">
 			{!isLoading && (
@@ -119,7 +119,7 @@ const PlaygroundDetails = () => {
 					<p className="text-2xl ">Surface : {playgroundData.surface}</p>
 					<p className="text-2xl"> Public : {playgroundData.public}</p>
 					<h2 className="text-center text-2xl text-primary font-bold m-5">
-						Clique sur un évenement pour joindre l&apos;organisateur !
+						Clique sur un évènement pour joindre l&apos;organisateur !
 					</h2>
 
 					{
@@ -134,7 +134,7 @@ const PlaygroundDetails = () => {
 									htmlFor={`my-modal-3_${event.id}`}
 									className="btn h-20 text-xl"
 								>
-									Le {event.start_date} au {event.stop_date} - {event.name}
+									Le {new Date((event.start_date)).toLocaleString("fr-FR", { timeZone: "Europe/Paris", day:"numeric", month:"long", year:"numeric", hour: "numeric", minute: "numeric"})} au {new Date((event.stop_date)).toLocaleString("fr-FR", { timeZone: "Europe/Paris", day:"numeric", month:"long", year:"numeric", hour: "numeric", minute: "numeric"})} - {event.name}
 								</label>
 								<input
 									type="checkbox"
@@ -161,7 +161,7 @@ const PlaygroundDetails = () => {
 				</div>
 			)}
 					<label htmlFor="my-modal-4" className="btn btn-primary" onClick={clearForm}>
-						Créer un nouvel évenement
+						Créer un nouvel évènement
 					</label>
 					<input
 						type="checkbox"

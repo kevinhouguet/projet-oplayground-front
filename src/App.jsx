@@ -11,12 +11,15 @@ import MyProfil from "./components/MyProfil";
 import Team from "./components/Team";
 import Error from "./components/Error";
 import CGU from "./components/CGU";
-import EventCreation from "./components/Event/EventCreation";
 import Mesevents from "./components/Mesevents";
 import PlaygroundsResult from "./components/PlaygroundsResult";
 import PlaygroundDetails from "./components/PlaygroundDetails";
 
 const App = () => {
+
+	useEffect(function () {
+		localStorage.getItem("accessToken");
+	}, []);
 
 	useEffect(function () {
 		if (localStorage.getItem("accessToken")) {
@@ -38,6 +41,7 @@ const App = () => {
 			<Header
 				onLogout={logout}
 			/>
+
 			<Routes>
 
 				<Route 
@@ -47,14 +51,7 @@ const App = () => {
 
 				<Route
 					path="/inscription"
-					element={
-						<Inscription />
-					}
-				/>
-
-				<Route
-					path={"/qui-sommes-nous"} 
-					element={<Team />} 
+					element={<Inscription />}
 				/>
 
 				<Route
@@ -63,22 +60,53 @@ const App = () => {
 				/>
 
 				<Route
-					path="/mon-profil"
-					element={<MyProfil />}
+					path={"/qui-sommes-nous"} 
+					element={<Team />} 
 				/>
-        
+
+				<Route 
+					path="/conditions-generales" 
+					element={<CGU />} 
+				/>
+
 				<Route
 					path="/liste-des-terrains"
-					element={
-						<PlaygroundsResult />}
+					element={<PlaygroundsResult />}
 				/>
-				<Route path="/detail-du-terrain/:id" element={<PlaygroundDetails />}
+
+				<Route 
+					path="*" 
+					element={<Error />} 
 				/>
-				<Route path="/creation-evenement" element={<EventCreation />} />
-				<Route path="/liste-des-evenements" element={<Mesevents />}/>
-				<Route path="/conditions-generales" element={<CGU />} />
-				<Route path="*" element={<Error />} />
+
+				{ 
+					localStorage.getItem("accessToken") 
+						?
+						<>
+							<Route
+								path="/mon-profil"
+								element={<MyProfil />}
+							/>
+        
+							<Route 
+								path="/detail-du-terrain/:id" 
+								element={<PlaygroundDetails />}
+							/>
+
+							<Route 
+								path="/liste-des-evenements" 
+								element={<Mesevents />}
+							/>
+						</>
+						:
+						<Route
+							path="*"
+							element={<Error />}
+						/>
+				};
+
 			</Routes>
+
 			<Footer />
 		</div>
 	);
