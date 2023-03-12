@@ -44,6 +44,7 @@ const Login = () => {
 				localStorage.setItem("accessToken", response.data.accessToken);
 				setIsError(false);
 				getUsername();
+				location.reload();
 			})
 			.catch((error) => {
 				console.error(error);
