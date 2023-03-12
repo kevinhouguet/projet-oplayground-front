@@ -44,6 +44,7 @@ const Login = () => {
 				localStorage.setItem("accessToken", response.data.accessToken);
 				setIsError(false);
 				getUsername();
+				location.reload();
 			})
 			.catch((error) => {
 				console.error(error);
@@ -76,6 +77,12 @@ const Login = () => {
 
 
 				<p className="text-sm">*Champs obligatoires</p>
+
+				{
+					isError
+				&&
+				<p className="text-red-600 text-sm "> Connexion échouée ! Adresse mail et/ou mot de passe incorrect ! </p>
+				}
 
 				<div className="flex justify-center">
 					<button htmlFor="my-modal" className="btn btn-secondary" type="submit"> Connexion </button>
@@ -113,11 +120,7 @@ const Login = () => {
         
 			</form>
 
-			{
-				isError
-				&&
-				<p className="text-red-600 text-sm"> Connexion échouée ! Adresse mail et/ou mot de passe incorrect ! </p>
-			}
+			
 
 		</div>
 	);

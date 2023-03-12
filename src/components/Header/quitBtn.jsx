@@ -9,7 +9,7 @@ const QuitBtn = (props) => {
 
 	return (
 		<Link to="/">
-			<img src={ quitBtnImg } className="btn btn-ghost" onClick={onLogout} alt="disconect button" />
+			<img src={ quitBtnImg } className="btn btn-ghost sm:w-16" onClick={onLogout} alt="disconect button" />
 		</Link>
 	);
 };

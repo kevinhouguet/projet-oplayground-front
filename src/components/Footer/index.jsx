@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const Footer = () => (
 	<footer className="footer bg-primary text-primary-content mt-auto p-5 flex justify-around">
 		<div>
-			<Link to="/"><span className="footer-title text-3xl">O'playground</span></Link>
+			<Link to="/"><span className="footer-title text-3xl sm:text-xl">O'playground</span></Link>
 			<Link to="/qui-sommes-nous" className="link link-hover">Qui sommes-nous ?</Link>
 			<label htmlFor="my-modal" className="link link-hover">Contact</label>
 			<input type="checkbox" id="my-modal" className="modal-toggle" />
@@ -23,7 +23,7 @@ const Footer = () => (
 		</div>
 		
 		<div>
-			<span className="footer-title text-2xl">Nos réseaux</span>
+			<span className="footer-title text-2xl sm:text-xl">Nos réseaux</span>
 			<div className="flex space-x-4 m-auto">
 				<Link className="link link-hover"> <FaFacebook /> </Link>
 				<Link className="link link-hover"> <FaTwitter /> </Link>
