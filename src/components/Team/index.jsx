@@ -14,8 +14,8 @@ const Team = () => (
             Qui sommes-nous ?
 		</h1>
 
-		<div className="flex flex-row justify-evenly p-20">
-			<div className="card card-compact max-w-2/3 bg-base-100 shadow-2xl py-2 transform hover:scale-110 transition duration-300">
+		<div className="flex flex-row justify-evenly p-20 sm:flex-wrap">
+			<div className="card card-compact max-w-2/3 bg-base-100 shadow-2xl py-2 transform hover:scale-110 transition duration-300 sm:mb-5">
 				<div className="flex justify-center flex-col items-center ">
 					<h2 className="text-2xl ">Kevin Houguet</h2>
 
@@ -44,7 +44,7 @@ const Team = () => (
 				</div>
 			</div>
 
-			<div className="card card-compact max-w-2/3 bg-base-100 shadow-2xl py-2 transform hover:scale-110 transition duration-300">
+			<div className="card card-compact max-w-2/3 bg-base-100 shadow-2xl py-2 transform hover:scale-110 transition duration-300 sm:mb-5">
 				<div className="flex justify-center flex-col items-center ">
 				
 					<h2 className="text-2xl ">
@@ -63,7 +63,7 @@ const Team = () => (
 				</div>
 			</div>
 
-			<div className="card card-compact max-w-2/3 bg-base-100 shadow-2xl py-2 transform hover:scale-110 transition duration-300">
+			<div className="card card-compact max-w-2/3 bg-base-100 shadow-2xl py-2 transform hover:scale-110 transition duration-300 sm:mb-5">
 				<div className="flex justify-center flex-col items-center ">
 				
 					<h2 className="text-2xl ">
@@ -82,7 +82,7 @@ const Team = () => (
 				</div>
 			</div>
 
-			<div className="card card-compact max-w-2/3 bg-base-100 shadow-2xl py-2 transform hover:scale-110 transition duration-300">
+			<div className="card card-compact max-w-2/3 bg-base-100 shadow-2xl py-2 transform hover:scale-110 transition duration-300 sm:mb-5">
 				<div className="flex justify-center flex-col items-center ">
 				
 					<h2 className="text-2xl ">
@@ -101,7 +101,7 @@ const Team = () => (
 				</div>
 			</div>
 
-			<div className="card card-compact max-w-2/3 bg-base-100 shadow-2xl py-2 transform hover:scale-110 transition duration-300">
+			<div className="card card-compact max-w-2/3 bg-base-100 shadow-2xl py-2 transform hover:scale-110 transition duration-300 sm:mb-5">
 				<div className="flex justify-center flex-col items-center ">
 				
 					<h2 className="text-2xl ">

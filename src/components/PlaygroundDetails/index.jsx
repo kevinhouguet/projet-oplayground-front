@@ -92,7 +92,7 @@ const PlaygroundDetails = () => {
 	return (
 		<div className="flex flex-col items-center justify-center min-h-screen bg-cover bg-center bg-[url('./assets/white-painted-wall-texture-background.jpg')]">
 			{!isLoading && (
-				<div className="card w-1/2 glass shadow-2xl p-10 sm:w-full">
+				<div className="card w-5/6 glass shadow-2xl p-10 sm:w-full">
 					<h1 className="text-center text-4xl pb-16">{playgroundData.name}</h1>
 					<div className="flex justify-evenly pb-10">
 						<img
@@ -136,30 +136,32 @@ const PlaygroundDetails = () => {
 								{playgroundData.events.map(function (event) {
 									return (
 										<div key={event.id} className="flex justify-center">
-											<label
-												htmlFor={`my-modal-3_${event.id}`}
-												className="btn bg-orange-800 text-primary py-1 h-auto text-xl"
-											>
+											<div className="sm:flex-wrap">
+												<label
+													htmlFor={`my-modal-3_${event.id}`}
+													className="btn bg-orange-800 text-primary py-1 h-auto text-xl"
+												>
 											Du{" "}
-												{new Date(event.start_date).toLocaleString("fr-FR", {
-													timeZone: "Europe/Paris",
-													day: "numeric",
-													month: "long",
-													year: "numeric",
-													hour: "numeric",
-													minute: "numeric",
-												})}{" "}
+													{new Date(event.start_date).toLocaleString("fr-FR", {
+														timeZone: "Europe/Paris",
+														day: "numeric",
+														month: "long",
+														year: "numeric",
+														hour: "numeric",
+														minute: "numeric",
+													})}{" "}
 											au{" "}
-												{new Date(event.stop_date).toLocaleString("fr-FR", {
-													timeZone: "Europe/Paris",
-													day: "numeric",
-													month: "long",
-													year: "numeric",
-													hour: "numeric",
-													minute: "numeric",
-												})}{" "}
+													{new Date(event.stop_date).toLocaleString("fr-FR", {
+														timeZone: "Europe/Paris",
+														day: "numeric",
+														month: "long",
+														year: "numeric",
+														hour: "numeric",
+														minute: "numeric",
+													})}{" "}
 											- {event.name}{" "}
-											</label>
+												</label>
+											</div>
 											<input
 												type="checkbox"
 												id={`my-modal-3_${event.id}`}
