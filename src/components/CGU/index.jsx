@@ -1,12 +1,12 @@
 import React from "react";
 
 const CGU = () => (
-	<div className="flex flex-col min-h-screen items-center justify-center p-10 ">
-		<div className="card w-1/2 glass shadow-2xl p-10 flex flex-auto ">
+	<div className="flex flex-col items-center justify-center p-10  ">
+		<div className="card w-1/2 glass shadow-2xl p-10 flex flex-auto sm:w-full ">
 
 			<h1 className="text-center text-4xl p-10 "> Conditions générales d&apos;utilisation </h1>
 
-			<p className="text-left text-2xl overflow-y-scroll p-5 "> 
+			<p className="text-left text-2xl p-5 "> 
         L&apos;utilisation de ce site web est soumise aux conditions d&apos;utilisation suivantes :
 				<br />
         Le contenu des pages de ce site web est uniquement destiné à votre information générale et à votre utilisation. Il est sujet à changement sans préavis.
