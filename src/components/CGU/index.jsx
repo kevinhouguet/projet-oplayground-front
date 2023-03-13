@@ -2,7 +2,7 @@ import React from "react";
 
 const CGU = () => (
 	<div className="flex flex-col items-center justify-center p-10  ">
-		<div className="card w-1/2 glass shadow-2xl p-10 flex flex-auto sm:w-full ">
+		<div className="card w-full glass shadow-2xl p-10 flex flex-auto sm:w-full ">
 
 			<h1 className="text-center text-4xl p-10 "> Conditions générales d&apos;utilisation </h1>
 
