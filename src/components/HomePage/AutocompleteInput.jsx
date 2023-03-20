@@ -50,9 +50,9 @@ function AutocompleteInput() {
 	}
 
 	return (
-		<form onSubmit={handleSubmit} className="">
+		<form onSubmit={handleSubmit} className="search-form">
 			<input
-				className="input input-bordered input-secondary mr-2 sm:w-1/2"
+				className="input input-bordered input-secondary"
 				placeholder="Entrez une ville..."
 				type="text"
 				value={selectedSuggestion ? `${selectedSuggestion.nom} - ${selectedSuggestion.codesPostaux[0]}` : searchTerm}

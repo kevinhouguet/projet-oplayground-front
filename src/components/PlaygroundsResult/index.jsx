@@ -17,12 +17,12 @@ const PlaygroundsResult = () => {
 	};
 
 	return (
-		<div className="min-h-screen bg-cover bg-center flex flex-wrap justify-center bg-[url('./assets/white-painted-wall-texture-background.jpg')] p-10">
+		<div className="min-h-screen bg-cover bg-center flex flex-wrap justify-center bg-[url('./assets/white-painted-wall-texture-background.jpg')] p-10 sm:p-0 sm:gap-y-8">
 			{location.state.length > 0 ? (
 				location.state.map((item) => (
 					<div
 						key={item.playgroundId}
-						className="card lg:card-side bg-base-100 shadow-xl w-9/12 m-10 flex-row sm:flex-col"
+						className="card lg:card-side bg-base-100 shadow-xl w-9/12 m-10 flex-row sm:flex-col sm:w-full sm:m-1"
 					>
 						<img
 							src={basketball}

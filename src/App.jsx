@@ -17,9 +17,9 @@ import PlaygroundDetails from "./components/PlaygroundDetails";
 
 const App = () => {
 
-	useEffect(function () {
-		localStorage.getItem("accessToken");
-	}, []);
+	// useEffect(function () {
+	// 	localStorage.getItem("accessToken");
+	// }, []);
 
 	useEffect(function () {
 		if (localStorage.getItem("accessToken")) {

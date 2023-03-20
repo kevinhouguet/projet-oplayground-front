@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import menuBurger from "../../assets/menuBurger_white.svg";
 
 const BurgerMenu = () => {
 	const [username, setUsername] = useState("");
@@ -29,23 +30,26 @@ const BurgerMenu = () => {
 	};
 
 	return (
-		<div className="burgerMenu dropdown dropdown-end bg-secondary rounded-xl">
+		// <div className="burgerMenu dropdown dropdown-end bg-secondary rounded-xl">
+		<div className="burgerMenu">
 			<label
-				tabIndex={0}
-				className="btn btn-ghost rounded-btn"
+				// tabIndex={0}
+				// className="btn btn-ghost rounded-btn"
+				className="btn btn-ghost box-content"
 				onClick={handleClick}
 			>
 				{
 					localStorage.getItem("accessToken")
 						?
-						<span>Bonjour {username} {/*&#127936;*/}</span>  
+						// <span>Bonjour {username} {/*&#127936;*/}</span>
+						<img className="w-8" src={menuBurger} alt="menu_burger" />
 						:
-						"Menu"
+						""
 				}
 			</label>
 			<ul
-				tabIndex={0}
-				className={`menu dropdown-content p-2 shadow bg-secondary-focus rounded-box w-52 mt-4 ${isOpen ? "block" : "hidden"
+				// tabIndex={0}
+				className={`menu dropdown-content p-0 shadow bg-secondary-focus rounded-box w-full mt-4 ${isOpen ? "block" : "hidden"
 				}`}
 			>
 				<li>
