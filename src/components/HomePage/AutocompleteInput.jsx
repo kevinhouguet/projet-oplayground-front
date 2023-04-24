@@ -45,6 +45,7 @@ function AutocompleteInput() {
 				navigate("/liste-des-terrains", { state: objectData } );
 			})
 			.catch((error) => {
+				navigate("/liste-des-terrains", { state: [] } );
 				console.log(error);
 			});
 	}
